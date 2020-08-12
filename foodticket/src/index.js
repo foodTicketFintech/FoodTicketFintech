@@ -4,11 +4,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import MainMenu from "./pages/MainMenu/MainMenu.js";
 
+import testMain from "./pages/MainMenu/testMain.js"
+
 ReactDOM.render(
   <>
     <Router>
       <Switch>
-        <Route path="/" exact component={MainMenu} />
+        <Route path="/" exact component={testMain} />
       </Switch>
     </Router>
   </>,
