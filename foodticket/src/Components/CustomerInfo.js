@@ -14,7 +14,7 @@ class CustomerInfo extends React.Component {
     }
 
     dbTest = async() => {
-        const res = await axios.get("/api/test");
+        const res = await axios.get("http://localhost:4000/api/test");
         console.log(res.data);
     }
 
