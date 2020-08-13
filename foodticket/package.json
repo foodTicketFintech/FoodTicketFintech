@@ -10,6 +10,7 @@
     "http-proxy-middleware": "^1.0.1",
     "isotope-layout": "^3.0.6",
     "jquery": "^3.4.1",
+    "mysql": "^2.18.1",
     "popper.js": "^1.16.0",
     "react": "^16.12.0",
     "react-circular-progressbar": "^2.0.2",
