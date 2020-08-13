@@ -1,15 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-<<<<<<< HEAD
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-=======
-import MainMenu from "./pages/MainMenu/MainMenu.js";
-import SignUp from "./pages/SignUp/SignUp";
-import Customer from "./pages/Customer"
-
->>>>>>> c3f3f0c8e44787767405da79d9c7d770aa3a0b69
 
 import "./assets/themify-icon/themify-icons.css";
 import "./assets/simple-line-icon/simple-line-icons.css";
