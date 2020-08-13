@@ -31,6 +31,7 @@
     "react-slick": "^0.25.2",
     "react-stickynode": "^2.1.1",
     "react-visibility-sensor": "^5.1.1",
+    "sha256": "^0.2.0",
     "slick-carousel": "^1.8.1",
     "source-map-explorer": "^2.1.0",
     "styled-components": "^5.1.1"
