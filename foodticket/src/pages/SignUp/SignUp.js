@@ -1,6 +1,7 @@
 /*global kakao */
 import React, { Component } from "react";
 import "./SignUp.css";
+import axios from "axios";
 /*
 Customer table구조 
 
@@ -13,7 +14,7 @@ address (char) : 주소
 
 */
 
-class SignUp extends React.Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +26,8 @@ class SignUp extends React.Component {
       address: "",
       passwordError: false,
       termError: false,
+      positionX: "",
+      positionY: "",
     };
   }
 
@@ -41,8 +44,34 @@ class SignUp extends React.Component {
     //   return setTermError(true);
     // }
     console.log(this.state.id, this.state.name, this.state.password, this.state.passwordCheck);
-    // TODO : 1. Kakao Map API 사용 -> 좌표 받아와야 함
+    // Kakao Map API 사용 -> 좌표 저장
+    let geocoder = new kakao.maps.services.Geocoder();
+    let callback = (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        this.setState({ positionX: result[0].x });
+        this.setState({ positionY: result[0].y });
+        console.log(this.state);
+        return;
+      }
+    };
+    let a = await geocoder.addressSearch(this.state.address, callback);
 
+    let axiosResult = await axios({
+      method: "post",
+      url: "http://localhost:4000/customer/join",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      data: {
+        id: this.state.id,
+        name: this.state.name,
+        password: this.state.password,
+        birth: this.state.birth,
+        address: this.state.address,
+        positionX: this.state.positionX,
+        positionY: this.state.positionY,
+      },
+    });
+
+    console.log(axiosResult);
     // TODO : 2. DB에 저장하는 부분 작성
   };
 
@@ -106,7 +135,7 @@ class SignUp extends React.Component {
             <br />
             <input
               name="user-password"
-              type="password"
+              // type="password"
               required
               onChange={(e) => this.onChangePassword(e)}
             />
@@ -118,7 +147,7 @@ class SignUp extends React.Component {
             <br />
             <input
               name="user-password-check"
-              type="password"
+              // type="password"
               required
               onChange={(e) => this.onChangePasswordChk(e)}
             />
@@ -131,24 +160,14 @@ class SignUp extends React.Component {
           <div>
             <label htmlFor="user-birth">생년월일</label>
             <br />
-            <input
-              name="user-birth"
-              type="birth"
-              required
-              onChange={(e) => this.onChangeBrith(e)}
-            />
+            <input name="user-birth" required onChange={(e) => this.onChangeBrith(e)} />
           </div>
 
           {/* address */}
           <div>
             <label htmlFor="user-address">주소</label>
             <br />
-            <input
-              name="user-address"
-              type="address"
-              required
-              onChange={(e) => this.onChangeAddress(e)}
-            />
+            <input name="user-address" required onChange={(e) => this.onChangeAddress(e)} />
           </div>
           {/* <div>
           <Checkbox name="user-term" value={term} onChange={onChangeTerm}>
@@ -157,7 +176,7 @@ class SignUp extends React.Component {
           {termError && <div style={{ color: "red" }}>약관에 동의하셔야 합니다.</div>}
         </div> */}
           <div style={{ marginTop: 10 }}>
-            <input type="submit" value="로그인" action={(e) => this.onSubmit(e)} />
+            <input type="submit" value="로그인" />
           </div>
         </form>
       </>
