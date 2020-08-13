@@ -31,17 +31,28 @@ app.get("/api/test", (req, res) => {
 });
 
 app.post("/customer/join", (req, res) => {
-  // 받는 값
+  // json으로 받음
   // id, name, password, birth, address, positionX, positionY
-  console.log(req.body);
-  db.query("select * from customer", (err, data) => {
-    if (!err) {
-      res.send(data);
-    } else {
-      console.log(err);
-      res.send(err);
+  let id = req.body.id;
+  let name = req.body.name;
+  let password = req.body.password;
+  let birth = req.body.birth;
+  let address = req.body.address;
+  let positionX = req.body.positionX;
+  let positionY = req.body.positionY;
+  //"select * from customer"
+  // TODO : ID를 hash함수에 넣어서 기본키 만들자
+  db.query(
+    `INSERT INTO customer VALUES(101,\"${id}\", \"${name}\",\"${password}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") `,
+    (err, data) => {
+      if (!err) {
+        res.send(data);
+      } else {
+        console.log(err);
+        res.send(err);
+      }
     }
-  });
+  );
 });
 
 app.listen(PORT, () => {

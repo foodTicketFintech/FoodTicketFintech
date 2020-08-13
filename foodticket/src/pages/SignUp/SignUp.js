@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import "./SignUp.css";
 import axios from "axios";
+import hashFunc from "../../Components/password/passwordhash";
+
 /*
 Customer table구조 
 
@@ -13,6 +15,8 @@ birth (char) : 생년월일
 address (char) : 주소
 
 */
+
+// TODO : 이 페이지 어떻게 모듈화 하는게 좋을지 물어보자
 
 class SignUp extends Component {
   constructor(props) {
@@ -43,6 +47,7 @@ class SignUp extends Component {
     // if (!term) {
     //   return setTermError(true);
     // }
+
     console.log(this.state.id, this.state.name, this.state.password, this.state.passwordCheck);
     // Kakao Map API 사용 -> 좌표 저장
     let geocoder = new kakao.maps.services.Geocoder();
@@ -50,6 +55,11 @@ class SignUp extends Component {
       if (status === kakao.maps.services.Status.OK) {
         this.setState({ positionX: result[0].x });
         this.setState({ positionY: result[0].y });
+
+        // TODO : hash 처리하는 로직 여기 넣는게 맞나?
+        let hashPassword = hashFunc(this.state.password);
+        this.setState({ password: hashPassword });
+
         console.log(this.state);
         return;
       }
@@ -57,8 +67,11 @@ class SignUp extends Component {
 
     let a = await geocoder.addressSearch(this.state.address, await callback);
 
-    let axiosResult = () => {
-      axios({
+    // TODO : [고려 중]회원가입 시, 휴대폰 인증 이런거 추가로 생각해봐야 함
+    // TODO : 중복 아이디 있으면 중복된 아이디 있다고 표시
+    // TODO : 회원가입 성공 시 로그인 창으로 이동
+    let axiosResult = async () => {
+      let b = await axios({
         method: "post",
         url: "http://localhost:4000/customer/join",
         data: {
