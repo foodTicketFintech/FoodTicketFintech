@@ -31,6 +31,8 @@ app.get("/api/test", (req, res) => {
 });
 
 app.post("/customer/join", (req, res) => {
+  // 받는 값
+  // id, name, password, birth, address, positionX, positionY
   console.log(req.body);
   db.query("select * from customer", (err, data) => {
     if (!err) {

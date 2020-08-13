@@ -54,25 +54,28 @@ class SignUp extends Component {
         return;
       }
     };
-    let a = await geocoder.addressSearch(this.state.address, callback);
 
-    let axiosResult = await axios({
-      method: "post",
-      url: "http://localhost:4000/customer/join",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      data: {
-        id: this.state.id,
-        name: this.state.name,
-        password: this.state.password,
-        birth: this.state.birth,
-        address: this.state.address,
-        positionX: this.state.positionX,
-        positionY: this.state.positionY,
-      },
-    });
+    let a = await geocoder.addressSearch(this.state.address, await callback);
 
-    console.log(axiosResult);
-    // TODO : 2. DB에 저장하는 부분 작성
+    let axiosResult = () => {
+      axios({
+        method: "post",
+        url: "http://localhost:4000/customer/join",
+        data: {
+          id: this.state.id,
+          name: this.state.name,
+          password: this.state.password,
+          birth: this.state.birth,
+          address: this.state.address,
+          positionX: this.state.positionX,
+          positionY: this.state.positionY,
+        },
+      });
+    };
+
+    let b = setTimeout(axiosResult, 1000);
+
+    // TODO : await로 동기적으로 실행 안되서 시간 걸었는데 괜찮은건가?
   };
 
   // Coustom Hook 이전
