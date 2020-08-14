@@ -14,6 +14,7 @@
     "jquery": "^3.4.1",
     "json": "^9.0.6",
     "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
     "popper.js": "^1.16.0",
     "react": "^16.12.0",
     "react-circular-progressbar": "^2.0.2",
@@ -37,6 +38,7 @@
     "styled-components": "^5.1.1"
   },
   "scripts": {
+    "server": "nodemon node ./src/server/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
