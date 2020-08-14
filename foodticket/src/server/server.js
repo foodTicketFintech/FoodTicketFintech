@@ -32,6 +32,8 @@ app.get("/api/test", (req, res) => {
 });
 
 app.post("/customer/join", (req, res) => {
+  // TODO : 같은 아이디로 회원가입할 시 처리 로직 필요
+
   // json으로 받음
   // id, name, password, birth, address, positionX, positionY
   let email = req.body.id;

@@ -16,8 +16,6 @@ address (char) : 주소
 
 */
 
-// TODO : 이 페이지 어떻게 모듈화 하는게 좋을지 물어보자
-
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +34,8 @@ class SignUp extends Component {
   }
 
   onSubmit = async (e) => {
+    // FIXME : submit 한번 보내면 비밀번호 일치하지 않다고 뜨는거 고쳐야 함
+
     e.preventDefault();
     /**검증 로직 만들기
      * 1. 비밀번호와 비밀번호 체크가 다를 경우를 검증한다
@@ -68,7 +68,7 @@ class SignUp extends Component {
     let a = await geocoder.addressSearch(this.state.address, await callback);
 
     // TODO : [고려 중]회원가입 시, 휴대폰 인증 이런거 추가로 생각해봐야 함
-    // TODO : 중복 아이디 있으면 중복된 아이디 있다고 표시
+
     // TODO : 회원가입 성공 시 로그인 창으로 이동
     let axiosResult = async () => {
       let b = await axios({
@@ -151,7 +151,7 @@ class SignUp extends Component {
             <br />
             <input
               name="user-password"
-              // type="password"
+              type="password"
               required
               onChange={(e) => this.onChangePassword(e)}
             />
@@ -163,7 +163,7 @@ class SignUp extends Component {
             <br />
             <input
               name="user-password-check"
-              // type="password"
+              type="password"
               required
               onChange={(e) => this.onChangePasswordChk(e)}
             />
