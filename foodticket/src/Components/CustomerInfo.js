@@ -6,7 +6,7 @@ class CustomerInfo extends React.Component {
         super(props)
         this.state = {
             host : 'hwi',
-            test : '',
+            test : 'asdf',
         }
     }
     componentDidMount(){
