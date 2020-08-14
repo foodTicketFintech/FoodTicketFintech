@@ -2,7 +2,7 @@ import React from "react";
 import "./MainMenu.css";
 import Map from "../../Components/map/Map.js";
 import CustomerHello from "../../Components/CustomerHello.js";
-import CustomerInfo from "../../Components/CustomerInfo.js";
+import CustomerInfo from "../../Components/info/CustomerInfo.js";
 
 function MainMenu() {
   return (

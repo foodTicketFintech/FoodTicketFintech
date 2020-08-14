@@ -1,5 +1,5 @@
 import React from "react";
-import CustomerInfo from "../Components/CustomerInfo.js";
+import CustomerInfo from "../Components/info/CustomerInfo.js";
 
 function Customer() {
   return (
