@@ -36,9 +36,7 @@ function MainMenu() {
                     
 
 
-                    <div className="map-div">
-                      <Map />
-                    </div>
+                    
 
 
 
