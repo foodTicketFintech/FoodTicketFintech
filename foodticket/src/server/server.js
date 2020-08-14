@@ -64,6 +64,24 @@ app.post("/customer/join", (req, res) => {
   );
 });
 
+app.post("/customer/login", (req, res) => {
+  let id = req.body.id;
+  let password = req.body.password;
+  db.query(`SELECT * FROM CUSTOMER WHERE email =${id} AND password = ${password}`, (err, data) => {
+    if (!err) {
+      // 1. jwt 만드는 부분
+      res.send(data);
+    } else {
+      // TODO : 400 error 만들어서 줘야 함
+      console.log(err);
+      res.send(err);
+    }
+  });
+});
+
+app.post("/customer/validate", (req, res) => {});
+
 app.listen(PORT, () => {
+  "";
   console.log(`Server On : http://localhost : ${PORT} ✅`);
 });

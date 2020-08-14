@@ -7,6 +7,9 @@ import Login from "./pages/Login/Login";
 /*------ Pages-----*/
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount() {
     this.props.hideLoader();
   }
