@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-<<<<<<< HEAD
 import MainMenu from "./pages/MainMenu/MainMenu.js";
 import SignUp from "./pages/SignUp/SignUp";
 import Customer from "./pages/Customer.js"
 import StoreReg from "./pages/StoreReg/StoreReg.js"
-=======
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
->>>>>>> e8d1625593e9bce81460587fad9106fcfe579c7b
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import "./assets/themify-icon/themify-icons.css";
 import "./assets/simple-line-icon/simple-line-icons.css";
@@ -24,7 +22,6 @@ import "./assets/responsive.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "popper.js";
 
-<<<<<<< HEAD
 ReactDOM.render(
   <>
     <Router>
@@ -37,7 +34,7 @@ ReactDOM.render(
     </Router>
   </>,
   document.getElementById("root")
-=======
+)
 const loader = document.querySelector("#preloader");
 
 // if you want to show the loader when React loads data again
@@ -53,7 +50,7 @@ setTimeout(
       document.getElementById("root")
     ),
   1000
->>>>>>> e8d1625593e9bce81460587fad9106fcfe579c7b
+//>>>>>>> e8d1625593e9bce81460587fad9106fcfe579c7b
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -8,4 +8,6 @@ const db = mysql.createPool({
     database : "ticket"
 })
 
+
+
 module.exports = db;
