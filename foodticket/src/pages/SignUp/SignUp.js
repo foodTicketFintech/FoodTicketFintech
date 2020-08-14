@@ -69,7 +69,7 @@ class SignUp extends Component {
 
     // TODO : [고려 중]회원가입 시, 휴대폰 인증 이런거 추가로 생각해봐야 함
 
-    // TODO : 회원가입 성공 시 로그인 창으로 이동
+    // TODO : 회원가입 성공 -> modal -> 로그인 창 이동
     let axiosResult = async () => {
       let b = await axios({
         method: "post",
@@ -135,38 +135,68 @@ class SignUp extends Component {
           <div>
             <label htmlFor="user-id">아이디</label>
             <br />
-            <input name="user-id" required onChange={(e) => this.onChangeId(e)} />
+            <div className="col-lg-12">
+              <div className="form-group text_box">
+                <input
+                  name="user-id"
+                  placeholder="Email"
+                  type="text"
+                  required
+                  onChange={(e) => this.onChangeId(e)}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Name input tag */}
           <div>
             <label htmlFor="user-name">이름</label>
             <br />
-            <input name="user-name" required onChange={(e) => this.onChangeName(e)} />
+            <div className="col-lg-12">
+              <div className="form-group text_box">
+                <input
+                  name="user-name"
+                  placeholder="Name"
+                  type="text"
+                  required
+                  onChange={(e) => this.onChangeName(e)}
+                />
+              </div>
+            </div>
           </div>
 
           {/* PASSWORD input tag */}
           <div>
             <label htmlFor="user-password">비밀번호</label>
             <br />
-            <input
-              name="user-password"
-              type="password"
-              required
-              onChange={(e) => this.onChangePassword(e)}
-            />
+            <div className="col-lg-12">
+              <div className="form-group text_box">
+                <input
+                  name="user-password"
+                  placeholder="Password"
+                  type="password"
+                  required
+                  onChange={(e) => this.onChangePassword(e)}
+                />
+              </div>
+            </div>
           </div>
 
           {/* PASSWORD_CHECK input tag */}
           <div>
             <label htmlFor="user-password-check">비밀번호체크</label>
             <br />
-            <input
-              name="user-password-check"
-              type="password"
-              required
-              onChange={(e) => this.onChangePasswordChk(e)}
-            />
+            <div className="col-lg-12">
+              <div className="form-group text_box">
+                <input
+                  name="user-password-check"
+                  placeholder="PasswordCheck"
+                  type="password"
+                  required
+                  onChange={(e) => this.onChangePasswordChk(e)}
+                />
+              </div>
+            </div>
             {this.state.passwordError && (
               <div style={{ color: "red" }}>비밀번호가 일치하지 않습니다.</div>
             )}
@@ -176,14 +206,34 @@ class SignUp extends Component {
           <div>
             <label htmlFor="user-birth">생년월일</label>
             <br />
-            <input name="user-birth" required onChange={(e) => this.onChangeBrith(e)} />
+            <div className="col-lg-12">
+              <div className="form-group text_box">
+                <input
+                  name="user-birth"
+                  placeholder="Birth"
+                  type="text"
+                  required
+                  onChange={(e) => this.onChangeBrith(e)}
+                />
+              </div>
+            </div>
           </div>
 
           {/* address */}
           <div>
             <label htmlFor="user-address">주소</label>
-            <br />
-            <input name="user-address" required onChange={(e) => this.onChangeAddress(e)} />
+            <br />{" "}
+            <div className="col-lg-12">
+              <div className="form-group text_box">
+                <input
+                  type="text"
+                  name="user-address"
+                  placeholder="Address"
+                  required
+                  onChange={(e) => this.onChangeAddress(e)}
+                />
+              </div>
+            </div>
           </div>
           {/* <div>
           <Checkbox name="user-term" value={term} onChange={onChangeTerm}>
@@ -191,9 +241,9 @@ class SignUp extends Component {
           </Checkbox>
           {termError && <div style={{ color: "red" }}>약관에 동의하셔야 합니다.</div>}
         </div> */}
-          <div style={{ marginTop: 10 }}>
-            <input type="submit" value="로그인" />
-          </div>
+          <button type="submit" className="btn_three">
+            회원 가입
+          </button>
         </form>
       </>
     );
