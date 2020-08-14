@@ -5,13 +5,17 @@ const db = require("./config/DB");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const random = require("random");
-
+const jwt = require("jsonwebtoken");
+const onError = require("./onError");
 // cors 허용
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true, // true로 하면 설정한 내용을 response 헤더 추가
 };
 app.use(cors());
+
+// 값 statc하게 넣어줬습니다.
+app.set("jwt-secret", "foodticket");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -49,16 +53,17 @@ app.post("/customer/join", (req, res) => {
   let id = randomId;
   console.log(randomId);
   db.query(
-    `INSERT INTO customer VALUES(\"${id}\",\"${email}\", \"${name}\",\"${password}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") `,
+    `INSERT INTO customer VALUES(\"${id}\",\"${email}\",\"${password}\",\"${name}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") `,
     (err, data) => {
       if (!err) {
         console.log(
-          `INSERT INTO customer VALUES(\"${id}\",\"${email}\", \"${name}\",\"${password}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") 실행 ✅ `
+          `INSERT INTO customer VALUES(\"${id}\",\"${email}\",\"${password}\",\"${name}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") 실행 ✅ `
         );
-        res.send(data);
+        res.status(200);
       } else {
+        // TODO : email 중복된 값 안되게 스키마 변경 // 물어보고 하자
         console.log(err);
-        res.send(err);
+        onError(err);
       }
     }
   );
@@ -67,16 +72,37 @@ app.post("/customer/join", (req, res) => {
 app.post("/customer/login", (req, res) => {
   let id = req.body.id;
   let password = req.body.password;
-  db.query(`SELECT * FROM CUSTOMER WHERE email =${id} AND password = ${password}`, (err, data) => {
-    if (!err) {
-      // 1. jwt 만드는 부분
-      res.send(data);
-    } else {
-      // TODO : 400 error 만들어서 줘야 함
-      console.log(err);
-      res.send(err);
+  let secret = {};
+  secret = app.get("jwt-secret");
+  db.query(
+    `SELECT * FROM customer WHERE email =\"${id}\" AND password = \"${password}\"`,
+    (err, data) => {
+      if (!err) {
+        // 1. jwt 만드는 부분
+        console.log(data);
+        let token = jwt.sign(
+          {
+            id: id,
+            name: data.name,
+          },
+          secret,
+          {
+            expiresIn: "60m",
+            subject: "userInfo",
+          }
+        );
+        console.log(token);
+        res.json({
+          message: "Login Success!! ✅",
+          token,
+        });
+      } else {
+        // TODO : 400 error 만들어서 줘야 함
+        console.log(err);
+        res.send(err);
+      }
     }
-  });
+  );
 });
 
 app.post("/customer/validate", (req, res) => {});
