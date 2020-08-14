@@ -1,8 +1,13 @@
 import React from "react";
 import "./MainMenu.css";
 import Map from "../../Components/map/Map.js";
+<<<<<<< HEAD
 import CustomerHello from "../../Components/Customer/CustomerHello.js";
 import CustomerInfo from "../../Components/Customer/CustomerInfo.js";
+=======
+import CustomerHello from "../../Components/CustomerHello.js";
+import CustomerInfo from "../../Components/info/CustomerInfo.js";
+>>>>>>> 06fe70dad3a47bdb7f5f2c3238f595de324a7233
 
 function MainMenu() {
   return (

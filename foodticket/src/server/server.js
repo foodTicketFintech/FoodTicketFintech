@@ -25,7 +25,7 @@ app.get("/api/host", (req, res) => {
 });
 
 app.get("/api/test", (req, res) => {
-  db.query("select * from customer", (err, data) => {
+  db.query("select * from customer where email = '123@123.com'", (err, data) => {
     if (!err) {
       res.send(data);
     } else {
