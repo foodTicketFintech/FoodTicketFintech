@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 4000;
 const db = require("./config/DB");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const random = require("random");
 
 // cors 허용
 const corsOptions = {
@@ -33,19 +34,25 @@ app.get("/api/test", (req, res) => {
 app.post("/customer/join", (req, res) => {
   // json으로 받음
   // id, name, password, birth, address, positionX, positionY
-  let id = req.body.id;
+  let email = req.body.id;
   let name = req.body.name;
   let password = req.body.password;
   let birth = req.body.birth;
   let address = req.body.address;
   let positionX = req.body.positionX;
   let positionY = req.body.positionY;
-  //"select * from customer"
-  // TODO : ID를 hash함수에 넣어서 기본키 만들자
+
+  // random한 ID값 생성
+  let randomId = random.int(0, 1000000);
+  let id = randomId;
+  console.log(randomId);
   db.query(
-    `INSERT INTO customer VALUES(101,\"${id}\", \"${name}\",\"${password}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") `,
+    `INSERT INTO customer VALUES(\"${id}\",\"${email}\", \"${name}\",\"${password}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") `,
     (err, data) => {
       if (!err) {
+        console.log(
+          `INSERT INTO customer VALUES(\"${id}\",\"${email}\", \"${name}\",\"${password}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") 실행 ✅ `
+        );
         res.send(data);
       } else {
         console.log(err);
