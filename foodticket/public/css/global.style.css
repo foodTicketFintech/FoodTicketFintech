@@ -11,7 +11,7 @@
 - [5. Header]
 - [6. main]
 - [7. Container]
-- [8. Form Elements]
+- [8. Form Elements] 
 - [9. Accordion] 
 - [10. Wizards] 
 - [11. Tab Control] 
@@ -2506,7 +2506,9 @@ background: #c5f493; /* Old browsers */
 background: -moz-linear-gradient(top, #1ddc3e 0%, #28a745 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top, #1ddc3e 0%,#28a745 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom, #1ddc3e  0%,#28a745 100%) /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ddc3e', endColorstr='#28a745',GradientType=0 ); 
+	border-radius: 19px;
+	padding: 15px;*/
 }
 
 .content-row {  
