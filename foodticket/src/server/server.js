@@ -105,9 +105,7 @@ app.post("/customer/login", (req, res) => {
   );
 });
 
-<<<<<<< HEAD
 app.post("/store/Reg", (req, res) => {
-
   // 매장이름, 음식1, 음식1가격, 음식2, 음식2가격
   let storeName = req.body.storeName;
   let food1 = req.body.name;
@@ -119,7 +117,8 @@ app.post("/store/Reg", (req, res) => {
   let randomId = random.int(0, 1000000);
   let id = randomId;
   console.log(randomId);
-  db.query(//이 부분 고민(좌표 x, y 받기 / 서로 다른 DB 테이블에 저장)
+  db
+    .query //이 부분 고민(좌표 x, y 받기 / 서로 다른 DB 테이블에 저장)
     /*`INSERT INTO customer VALUES(\"${storeName}\",\"${email}\", \"${name}\",\"${password}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") `,
     (err, data) => {
       if (!err) {
@@ -132,13 +131,10 @@ app.post("/store/Reg", (req, res) => {
         res.send(err);
       }
     }*/
-  );
+    ();
 });
 
-
-=======
 app.post("/customer/validate", (req, res) => {});
->>>>>>> ec5b8c4d2611e70c34e24d1b7107be5f003f0d99
 
 app.listen(PORT, () => {
   "";

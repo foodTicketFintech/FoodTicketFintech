@@ -15,7 +15,6 @@ function MainMenu() {
                 <i className="fa fa-arrow-left"></i>
               </a>
               <h1 className="page-title">Food Ticket</h1>
-              
             </header>
             <main className="fix-top-menu">
               <div className="tab-item fixed-bottom">
@@ -39,32 +38,18 @@ function MainMenu() {
                 </div>
                 <div className="tab-content">
                   <div className="content-item active" id="content1">
-<<<<<<< HEAD
-
-                  <h3><CustomerHello /></h3>
-                    <CustomerInfo />
-                    <Map />
-
-=======
                     <h3>
                       <CustomerHello />
                     </h3>
                     <CustomerInfo />
->>>>>>> ec5b8c4d2611e70c34e24d1b7107be5f003f0d99
                   </div>
                   <div className="content-item" id="content2">
                     <h3>Tab Content 2</h3>
-<<<<<<< HEAD
-
-          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-=======
                     It has survived not only five centuries, but also the leap into electronic
                     typesetting, remaining essentially unchanged. It was popularised in the 1960s
                     with the release of Letraset sheets containing Lorem Ipsum passages, and more
                     recently with desktop publishing software like Aldus PageMaker including
                     versions of Lorem Ipsum.
->>>>>>> ec5b8c4d2611e70c34e24d1b7107be5f003f0d99
                   </div>
                   <div className="content-item" id="content3">
                     <div>
@@ -79,11 +64,6 @@ function MainMenu() {
                   </div>
                   <div className="content-item" id="content4">
                     <h3>마이페이지</h3>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ec5b8c4d2611e70c34e24d1b7107be5f003f0d99
                   </div>
                 </div>
               </div>
