@@ -36,8 +36,8 @@ class CustomerInfo extends React.Component {
                                 <p>{this.state.name}</p>
                             </div>
                             <div className="info_item">
-                                <h6>Live Time:</h6>
-                                <p>{this.state.emial}</p>
+                                <h6>email:</h6>
+                                <p>{this.state.email}</p>
                             </div>
                             <div className="info_item">
                                 <h6>Service Cost:</h6>
@@ -47,13 +47,27 @@ class CustomerInfo extends React.Component {
                                 <h6>Quality:</h6>
                                 <p>High</p>
                             </div>
-                            <div className="info_item">
-                                <h6>Experience</h6>
-                                <p>3 Years</p>
-                            </div>
+                           
                         </div>
                     </div>
-                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className="th">id </th>
+                                <th className="th">가게이름</th>
+                                <th className="th">보유 식권</th>
+                                <th className="th">위치</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="td">1</td>
+                                <td className="td">2</td>
+                                <td className="td">3</td>
+                                <td className="td">4</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div className="col-lg-7">
                         <div className="details_content">
                             <div className="sec_title">
