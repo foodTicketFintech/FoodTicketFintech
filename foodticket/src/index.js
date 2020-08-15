@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import MainMenu from "./pages/MainMenu/MainMenu.js";
 import SignUp from "./pages/SignUp/SignUp";
 import Customer from "./pages/Customer.js"
+import MainMenu from "./pages/MainMenu/MainMenu.js";
 import StoreReg from "./pages/StoreReg/StoreReg.js"
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -22,19 +22,7 @@ import "./assets/responsive.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "popper.js";
 
-ReactDOM.render(
-  <>
-    <Router>
-      <Switch>
-        <Route path="/" exact component={MainMenu} />
-        <Route path="/signUp" exact component={SignUp} />
-        <Route path="/Customer" exact component={Customer} />
-        <Route pathh="/StoreReg" exact component={StoreReg}/>
-      </Switch>
-    </Router>
-  </>,
-  document.getElementById("root")
-)
+
 const loader = document.querySelector("#preloader");
 
 // if you want to show the loader when React loads data again

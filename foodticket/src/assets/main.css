@@ -62,7 +62,8 @@ a:hover, a:focus {
 }
 
 i:before {
-  margin-left: 0px !important;
+  margin-left: 100px !important;
+  margin-right: 100px !important;
 }
 
 body {
