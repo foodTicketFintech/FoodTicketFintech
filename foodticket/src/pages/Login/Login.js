@@ -37,7 +37,6 @@ class Login extends Component {
     };
     axiosRes = await axiosResult();
     console.log(axiosRes);
-    ``;
     // accessToken cookie에 저장해야 한다.
   };
   onSubmitSignUp = async (e) => {
