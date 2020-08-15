@@ -105,7 +105,6 @@ app.post("/customer/login", (req, res) => {
   );
 });
 
-<<<<<<< HEAD
 app.post("/store/Reg", (req, res) => {
 
   // 매장이름, 음식1, 음식1가격, 음식2, 음식2가격
@@ -135,10 +134,29 @@ app.post("/store/Reg", (req, res) => {
   );
 });
 
+app.get("/restaurant", (req, res) => {
+  let name = req.body.name;
+  let positionX = req.body.position_x;
+  let positionY = req.body.position_y;
+  let address = req.body.restaurant_address;
+  db.query(
+    `SELECT * FROM restaurant`,
+    (err, data) => {
+      if (!err) {
+        res.send(data);
+        for(var i = 0; i < data.length; i++){
+          console.log(data[i].title + " : " + data[i].description);
+        } 
+      } else {
+        console.log(err);
+        res.send(err);
+      }
+    }
+  );
+});
 
-=======
+
 app.post("/customer/validate", (req, res) => {});
->>>>>>> ec5b8c4d2611e70c34e24d1b7107be5f003f0d99
 
 app.listen(PORT, () => {
   "";
