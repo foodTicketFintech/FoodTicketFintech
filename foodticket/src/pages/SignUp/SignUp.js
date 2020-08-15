@@ -51,12 +51,14 @@ class SignUp extends Component {
     console.log(this.state.id, this.state.name, this.state.password, this.state.passwordCheck);
     // Kakao Map API 사용 -> 좌표 저장
     let geocoder = new kakao.maps.services.Geocoder();
+
+    console.log(geocoder);
     let callback = (result, status) => {
+      console.log(result);
       if (status === kakao.maps.services.Status.OK) {
         this.setState({ positionX: result[0].x });
         this.setState({ positionY: result[0].y });
 
-        // TODO : hash 처리하는 로직 여기 넣는게 맞나?
         let hashPassword = hashFunc(this.state.password);
         this.setState({ password: hashPassword });
 
@@ -66,8 +68,6 @@ class SignUp extends Component {
     };
 
     let a = await geocoder.addressSearch(this.state.address, await callback);
-
-    // TODO : [고려 중]회원가입 시, 휴대폰 인증 이런거 추가로 생각해봐야 함
 
     // TODO : 회원가입 성공 -> modal -> 로그인 창 이동
     let axiosResult = async () => {
@@ -86,9 +86,8 @@ class SignUp extends Component {
       });
     };
 
-    let b = setTimeout(axiosResult, 1000);
-
-    // TODO : await로 동기적으로 실행 안되서 시간 걸었는데 괜찮은건가?
+    // let b = setTimeout(axiosResult, 2000);
+    setTimeout(console.log(this.state), 2000);
   };
 
   onChangeId = (e) => {
