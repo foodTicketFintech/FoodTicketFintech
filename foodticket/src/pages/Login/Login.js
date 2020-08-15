@@ -40,6 +40,7 @@ class Login extends Component {
     console.log(window.localStorage);
     console.log(this.props);
     // accessToken cookie에 저장해야 한다.
+    window.sessionStorage.setItem("accessToken", axiosRes.data.token);
   };
   onSubmitSignUp = async (e) => {
     e.preventDefault();

@@ -24,30 +24,33 @@ class App extends Component {
   }
 
   onLogin = () => {
-    this.setState({
+    this.state.setState({
       logged: true,
     });
   };
 
-  inLogout = () => {
-    this.setState({
+  onLogout = () => {
+    this.state.setState({
       logged: false,
     });
-
-    // TODO : sessionstorage내용 없애야함
   };
 
   render() {
     return (
-      <Router>
-        <Switch>
+      <Router a={this.state}>
+        <Switch a={this.state}>
+          // FIXME : 삼항연산자로 true - path 정상경로 false '로그인이 필요한 서비스입니다.' 로이동
           <ScrollToTopRoute exact={true} path={"/"} component={Home} />
-          <ScrollToTopRoute exact={true} path={"/SignUp"} component={SignUp} />
-          <ScrollToTopRoute exact={true} path={"/Login"} component={Login} state={this.state} />
+          <ScrollToTopRoute
+            a={this.state}
+            exact={true}
+            path={"/SignUp"}
+            component={this.state.logged ? Home : SignUp}
+          />
+          <ScrollToTopRoute exact={true} path={"/Login"} component={Login} />
           <ScrollToTopRoute path="/Main" exact component={MainMenu} />
           <ScrollToTopRoute path="/Customer" exact component={Customer} />
           <ScrollToTopRoute pathh="/StoreReg" exact component={StoreReg} />
-
           {/* <ScrollToTopRoute path="/Digital-marketing" component={DigitalMarketing} />
           <ScrollToTopRoute path="/Payment-processing" component={PaymentProcessing} /> */}
         </Switch>
