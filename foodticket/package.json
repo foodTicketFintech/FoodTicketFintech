@@ -13,6 +13,7 @@
     "isotope-layout": "^3.0.6",
     "jquery": "^3.4.1",
     "json": "^9.0.6",
+    "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.4",

@@ -91,7 +91,6 @@ class SignUp extends Component {
     // TODO : await로 동기적으로 실행 안되서 시간 걸었는데 괜찮은건가?
   };
 
-  // Coustom Hook 이전
   onChangeId = (e) => {
     this.setState({ id: e.target.value });
   };
