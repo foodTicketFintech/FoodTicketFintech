@@ -7,6 +7,7 @@ import CustomerInfo from "../../Components/info/CustomerInfo.js";
 function MainMenu() {
   return (
     <div>
+      <Map />
       <div className="main-div">
         <div className="wrapper">
           <div className="wrapper-inline">
@@ -42,6 +43,7 @@ function MainMenu() {
                       <CustomerHello />
                     </h3>
                     <CustomerInfo />
+
                   </div>
                   <div className="content-item" id="content2">
                     <h3>Tab Content 2</h3>
