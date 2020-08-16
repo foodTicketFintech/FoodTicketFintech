@@ -52,7 +52,7 @@ class MapMarker extends Component {
     getRes = async()  =>{
         const getRes = await axios({
             method : 'GET',
-            url : 'localhost:4000/restaurant',
+            url : 'http://localhost:4000/restaurant',
             data : {id : this.state.id}
         }
         
