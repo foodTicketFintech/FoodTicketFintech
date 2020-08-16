@@ -8,12 +8,14 @@ import Login from "./pages/Login/Login";
 import Customer from "./pages/Customer.js";
 import MainMenu from "./pages/MainMenu/MainMenu.js";
 import StoreReg from "./pages/StoreReg/StoreReg.js";
+import MapMarker from "./Components/map/MapMarker.js"
 /*------ Pages-----*/
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
+  
   componentDidMount() {
     this.props.hideLoader();
   }
@@ -26,7 +28,8 @@ class App extends Component {
           <ScrollToTopRoute exact={true} path={"/Login"} component={Login} />
           <ScrollToTopRoute path="/Main" exact component={MainMenu} />
           <ScrollToTopRoute path="/Customer" exact component={Customer} />
-          <ScrollToTopRoute pathh="/StoreReg" exact component={StoreReg} />
+          <ScrollToTopRoute path="/MapMarker" exact component={MapMarker} />
+          <ScrollToTopRoute path="/StoreReg" exact component={StoreReg} />
           {/* <ScrollToTopRoute component={NotFound} /> */}
 
           {/* <ScrollToTopRoute path="/Digital-marketing" component={DigitalMarketing} />
