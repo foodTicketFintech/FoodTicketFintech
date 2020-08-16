@@ -134,28 +134,6 @@ app.post("/store/Reg", (req, res) => {
     ();
 });
 
-app.get("/restaurant", (req, res) => {
-  let name = req.body.name;
-  let positionX = req.body.position_x;
-  let positionY = req.body.position_y;
-  let address = req.body.restaurant_address;
-  db.query(
-    `SELECT * FROM restaurant`,
-    (err, data) => {
-      if (!err) {
-        res.send(data);
-        for(var i = 0; i < data.length; i++){
-          console.log(data[i].title + " : " + data[i].description);
-        } 
-      } else {
-        console.log(err);
-        res.send(err);
-      }
-    }
-  );
-});
-
-
 app.post("/customer/validate", (req, res) => {});
 
 app.listen(PORT, () => {

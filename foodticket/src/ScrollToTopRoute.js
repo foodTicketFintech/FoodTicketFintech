@@ -3,12 +3,6 @@ import { Route, withRouter } from "react-router-dom";
 import "./App.css";
 
 class ScrollToTopRoute extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      a: this.props.a,
-    };
-  }
   componentDidUpdate(prevProps) {
     if (
       this.props.path === this.props.location.pathname &&
@@ -20,6 +14,7 @@ class ScrollToTopRoute extends Component {
 
   render() {
     const { component: Component, ...rest } = this.props;
+
     return <Route {...rest} render={(props) => <Component {...props} />} />;
   }
 }
