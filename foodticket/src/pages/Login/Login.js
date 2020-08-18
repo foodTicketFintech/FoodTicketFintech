@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Login.css";
 import axios from "axios";
-
+import { WithRouter } from "react-router-dom";
+import App from "../../App";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +39,8 @@ class Login extends Component {
     axiosRes = await axiosResult();
     console.log(axiosRes.data.token);
     console.log(window.localStorage);
-    console.log(this.props);
+    window.sessionStorage.setItem("logged", "true");
+    window.sessionStorage.setItem("accessToken", axiosRes.data.token);
     // accessToken cookie에 저장해야 한다.
   };
   onSubmitSignUp = async (e) => {
@@ -85,7 +87,6 @@ class Login extends Component {
             </div>
           </div>
 
-          {/* TODO : 1. 로그인 버튼 / 2. 회원가입 버튼 */}
           <button type="submit" className="btn_three" onClick={(e) => this.onSubmitLogin(e)}>
             로그인
           </button>
