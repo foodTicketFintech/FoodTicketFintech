@@ -9,6 +9,7 @@ import Customer from "./pages/Customer.js";
 import MainMenu from "./pages/MainMenu/MainMenu.js";
 import StoreReg from "./pages/StoreReg/StoreReg.js";
 import MapMarker from "./Components/map/MapMarker.js";
+import NotFound from "./pages/404";
 /*------ Pages-----*/
 
 // TODO : axios호출 시 jwt 같이 보내야 함. // server는 token 검증하는 로직 필요
@@ -32,7 +33,7 @@ class App extends Component {
           <ScrollToTopRoute path="/Customer" exact component={Customer} />
           <ScrollToTopRoute exact={true} path="/MapMarker" exact component={MapMarker} />
           <ScrollToTopRoute exact={true} path="/StoreReg" exact component={StoreReg} />
-          {/* <ScrollToTopRoute component={NotFound} /> */}
+          <ScrollToTopRoute component={NotFound} />
 
           {/* <ScrollToTopRoute path="/Digital-marketing" component={DigitalMarketing} />
           <ScrollToTopRoute path="/Payment-processing" component={PaymentProcessing} /> */}
