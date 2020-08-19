@@ -8,7 +8,7 @@ import Login from "./pages/Login/Login";
 import Customer from "./pages/Customer.js";
 import MainMenu from "./pages/MainMenu/MainMenu.js";
 import StoreReg from "./pages/StoreReg/StoreReg.js";
-import MapMarker from "./Components/map/MapMarker.js"
+import RestaurantInfo from "./Components/info/RestaurantInfo.js"
 /*------ Pages-----*/
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
           <ScrollToTopRoute exact={true} path={"/Login"} component={Login} />
           <ScrollToTopRoute path="/Main" exact component={MainMenu} />
           <ScrollToTopRoute path="/Customer" exact component={Customer} />
-          <ScrollToTopRoute path="/MapMarker" exact component={MapMarker} />
+          <ScrollToTopRoute path="/RestaurantInfo" exact component={RestaurantInfo} />
           <ScrollToTopRoute path="/StoreReg" exact component={StoreReg} />
           {/* <ScrollToTopRoute component={NotFound} /> */}
 
