@@ -36,14 +36,13 @@ const HostingBanner = () => {
           <div className="col-lg-6 col-md-7 d-flex align-items-center">
             <div className="hosting_content">
               <h2 className="wow fadeInUp" data-wow-delay="0.3s">
-                식권 서비스
+                FoodTicket
               </h2>
               <p className="wow fadeInUp" data-wow-delay="0.5s">
-                Get stuffed mate cheeky bugger lurgy loo plastered ruddy bubble and squeak bevvy
-                skive off quaint wellies.
+                다양한 식권 서비스를 만나보세요!
               </p>
-              <a href="/#" className="hosting_btn btn_hover wow fadeInUp" data-wow-delay="0.7s">
-                Get Started
+              <a href="/order" className="hosting_btn btn_hover wow fadeInUp" data-wow-delay="0.7s">
+                주문하기
               </a>
             </div>
           </div>

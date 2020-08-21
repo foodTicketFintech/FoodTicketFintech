@@ -37,6 +37,7 @@ app.get("/api/test", (req, res) => {
 
 app.post("/customer/join", (req, res) => {
   // TODO : 같은 아이디로 회원가입할 시 처리 로직 필요
+  // TODO : 로그인이 필요한 서비스 url 호출 시, 검증 로직 필요
 
   // json으로 받음
   // id, name, password, birth, address, positionX, positionY
@@ -61,7 +62,6 @@ app.post("/customer/join", (req, res) => {
         );
         res.status(200);
       } else {
-        // TODO : email 중복된 값 안되게 스키마 변경 // 물어보고 하자
         console.log(err);
         onError(err);
       }

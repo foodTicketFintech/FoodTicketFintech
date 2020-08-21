@@ -187,6 +187,11 @@ class CustomNavbar extends Component {
                     </ul>
                   </li> */}
                   <li className="nav-item">
+                    <NavLink title="Pricing" className="nav-link" to="/customer">
+                      식권 확인
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
                     <NavLink title="Pricing" className="nav-link" to="/signup">
                       SignUp
                     </NavLink>
