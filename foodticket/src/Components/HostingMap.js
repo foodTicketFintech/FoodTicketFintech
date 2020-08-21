@@ -1,5 +1,7 @@
 import React , {Component} from 'react';
 import Sectitle from './Title/Sectitle';
+import Map from './map/Map.js';
+import MapMarker from './map/MapMarker.js'
 
 class HostingMap extends Component {
     constructor(){
@@ -47,16 +49,8 @@ class HostingMap extends Component {
                 <div className="container">
                     <Sectitle Title="근처 15개 지역에서 식권을 사용할 수 있습니다." TitleP="The full monty burke posh excuse my French Richard cheeky bobby spiffing crikey Why gormless, pear shaped.!" sClass="hosting_title text-center"/>
                     <div className="h_map">
-                        <ul className="list-unstyled">
-                            {
-                                this.state.Map.map(item=>(
-                                    <li className="wow fadeIn" data-wow-delay="0.1s" key={item.id}>
-                                        <div className="place_name wow fadeInUp" data-wow-delay="0.2s">{item.countryName}</div>
-                                        <div className="round"><div className="dot"></div></div>
-                                    </li>
-                                ))
-                            }
-                        </ul>
+                        {/* <Map/> */}
+                        <MapMarker/>
                     </div>
 
                 </div>
