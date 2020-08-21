@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+const jwt = require("jsonwebtoken");
 class CustomerInfo extends React.Component {
     constructor(props) {
         super(props)
@@ -10,15 +10,33 @@ class CustomerInfo extends React.Component {
             cost : 0,
         }
     }
-    componentDidMount(){
-        this.dbTest();
+    verifyToken(token, str) {
+        var decoded;
+        try {
+            decoded = jwt.verify(token, str);
+            console.log(decoded) // bar
+            this.setState({email : decoded.id})
+        } catch (err) {
+            alert("올바른 secret키가 아닙니다.")
+        }
+        
+        
     }
-
+    
+    componentDidMount(){
+        var accessToken = window.sessionStorage.getItem("accessToken");
+        var str = "foodticket";
+        this.verifyToken(accessToken, str);
+       
+    }
     dbTest = async() => {
-        const res = await axios.get("http://localhost:4000/api/test");
-        console.log(res.data[0].email);
+        const res = await axios.get("http://localhost:4000/api/login/userInfo?email=" + this.state.email);
+        
+        console.log(res)
+
         this.setState({name : 'd', email : res.data[0].email,});
     }
+    
 
     render() {
         return (
@@ -50,21 +68,37 @@ class CustomerInfo extends React.Component {
                            
                         </div>
                     </div>
-                    <table>
-                        <thead>
+                    <a href="/customer" onClick={function(e){
+                                    e.preventDefault();
+                                    this.props.onChangePage();
+                                }.bind(this)}>{this.props.data}</a>
+                    <table className="table table-striped">
+                        <thead className="thead-dark">
                             <tr>
-                                <th className="th">id </th>
-                                <th className="th">가게이름</th>
-                                <th className="th">보유 식권</th>
-                                <th className="th">위치</th>
+                                <th >No </th>
+                                <th >가게이름</th>
+                                <th >보유 식권</th>
+                                <th >위치</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td className="td">1</td>
-                                <td className="td">2</td>
-                                <td className="td">3</td>
-                                <td className="td">4</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
                             </tr>
                         </tbody>
                     </table>

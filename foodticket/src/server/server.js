@@ -24,8 +24,9 @@ app.get("/api/host", (req, res) => {
   res.send({ host: "hwi" });
 });
 
-app.get("/api/test", (req, res) => {
-  db.query("select * from customer where email = '123@123.com'", (err, data) => {
+app.get("/api/login/userInfo", (req, res) => {
+  var email = req.query.email;
+  db.query("select * from customer where email = " + email, (err, data) => {
     if (!err) {
       res.send(data);
     } else {
