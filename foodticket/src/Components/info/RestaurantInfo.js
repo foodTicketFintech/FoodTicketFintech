@@ -12,87 +12,78 @@ import axios from "axios";
 
 const resList = []
 
-class RestaurantInfo extends Component {
-    
-    constructor(props) {
-        super(props)
-        this.state = {
-            restaurant: [{
-                id: '',
-                name: '',
-                positionX: '',
-                positionY: '',
-                address: '',
-            }]
-        };
+
+var  getRes;
+
+class RestaurantInfo {
+    constructor() {
+        this.res();
+        
     }
 
-    // dbTest = async () => {
-    //     const data = await axios.get({
-    //         method: "GET",
-    //         url: "localhost:4000/restaurant",
-    //         data: {
-    //             id: this.state.id,
-    //             name: this.state.name,
-    //             positionX: this.state.positionX,
-    //             positionY: this.state.positionY,
-    //             address: this.state.address
-    //         }
-    //     })
-    //     console.log("bbbb");
-    // }
+    res = async () =>{
+        var rest
+        rest = await axios({
+                method: 'GET',
+                url: 'http://localhost:4000/restaurant',
+                data: {
 
-    // dbTest = async()  =>{
-    //     const getRes = await axios.get('https://jsonplaceholder.typicode.com/posts')
-    //     .then(Response =>{
-    //         console.log(Response)
-    //         this.setState({posts: Response.data})
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //         this.setState({errorMsg : 'Error retreiving data'})
-    //     })
-    // } 
-
+                }
+            });
+            this.asdf(rest);
+        }
     
-    getRes = async()  =>{
-       const getRes = await axios({
-            method : 'GET',
-            url : 'http://localhost:4000/restaurant',
-            data : {
-                
+        asdf(inputRest) {
+            console.log("inputRest");
+            console.log(inputRest.data.length);
+            
+            //console.log(this.test.data.length);
+            window.localStorage.setItem("resSize", inputRest.data.length);
+            for (let i = 0; i < inputRest.data.length; i++) {
+                window.localStorage.setItem(`mapId${i + 1}`, inputRest.data[i].id);
+                window.localStorage.setItem(`mapName${i + 1}`, inputRest.data[i].name);
+                window.localStorage.setItem(`mapPosition_x${i + 1}`, inputRest.data[i].position_x);
+                window.localStorage.setItem(`mapPosition_y${i + 1}`, inputRest.data[i].position_y);
+                window.localStorage.setItem(`mapRestaurant_address${i + 1}`, inputRest.data[i].restaurant_address);
             }
+            console.log("------------------")
+            console.log(inputRest.data[0])
+
+
         }
-    )
-    console.log(getRes.data)
-    return getRes.data;
-    };
-    
-    componentDidMount() {
-        if (!this.state.data) {
-            this.getRes().then(data => this.setState({data}))
-                          .catch(err => { /*...handle the error...*/});
-        }
+
+        // dbTest = async () => {
+        //     const data = await axios.get({
+        //         method: "GET",
+        //         url: "localhost:4000/restaurant",
+        //         data: {
+        //             id: this.state.id,
+        //             name: this.state.name,
+        //             positionX: this.state.positionX,
+        //             positionY: this.state.positionY,
+        //             address: this.state.address
+        //         }
+        //     })
+        //     console.log("bbbb");
+        // }
+
+        // dbTest = async()  =>{
+        //     const getRes = await axios.get('https://jsonplaceholder.typicode.com/posts')
+        //     .then(Response =>{
+        //         console.log(Response)
+        //         this.setState({posts: Response.data})
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //         this.setState({errorMsg : 'Error retreiving data'})
+        //     })
+        // } 
+
+
     }
 
-    render() {
-        const { data } = this.state;
-        return (
-            <div>
-                <div>
-                    list of posts
-                    {this.state.id}
-                    {
-                        // posts.length ?
-                        // posts.map(post => <div key={post.id}>{post.name}</div>) :
-                        // null
-                    }
-                </div>
-                
-            </div>
-                
-        )
-    }
-}
 
-export default RestaurantInfo ;
+
+
+
+export default RestaurantInfo;

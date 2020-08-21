@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./SignUp.css";
 import axios from "axios";
 import hashFunc from "../../Components/password/passwordhash";
+import JoinModal from "../../Components/Modal/JoinModal";
 
 /*
 Customer table구조 
@@ -30,8 +31,13 @@ class SignUp extends Component {
       termError: false,
       positionX: "",
       positionY: "",
+      showResults: false,
     };
   }
+
+  openModal = () => {
+    this.setState({ showResults: true });
+  };
 
   onSubmit = async (e) => {
     // FIXME : submit 한번 보내면 비밀번호 일치하지 않다고 뜨는거 고쳐야 함
@@ -128,7 +134,7 @@ class SignUp extends Component {
   render() {
     return (
       <>
-        <form onSubmit={this.onSubmit} style={{ padding: 10 }}>
+        <form style={{ padding: 10 }}>
           {/* ID input tag */}
           <div>
             <label htmlFor="user-id">아이디</label>
@@ -239,9 +245,10 @@ class SignUp extends Component {
           </Checkbox>
           {termError && <div style={{ color: "red" }}>약관에 동의하셔야 합니다.</div>}
         </div> */}
-          <button type="submit" className="btn_three">
+          <button onClick={this.openModal} className="btn_three">
             회원 가입
           </button>
+          {this.state.showResults ? <JoinModal message /> : null}
         </form>
       </>
     );
