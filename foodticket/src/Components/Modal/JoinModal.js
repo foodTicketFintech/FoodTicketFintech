@@ -1,25 +1,23 @@
 import React from "react";
 import "./JoinModal.css";
 
-const Modal = () => {
+const Modal = (content) => {
+  //<React.Fragment>
+  console.log(content);
   return (
-    <React.Fragment>
+    <>
       <div className="ModalOverlay">
         <div className="Modal">
-          <p className="title">Modal Title</p>
+          <p className="title">{content.title}</p>
           <div className="content">
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel tempora nulla, non
-              molestiae dicta ducimus. Et unde laborum eveniet ex quod doloribus quae, aliquam
-              beatae atque, vero assumenda rem quo?
-            </p>
+            <p>{content.message}</p>
           </div>
           <div className="button-wrap">
-            <button>Confirm</button>
+            <button onClick={(e) => content.submit(e)}>{content.confirm}</button>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 export default Modal;

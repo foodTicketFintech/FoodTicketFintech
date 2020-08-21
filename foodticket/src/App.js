@@ -8,8 +8,9 @@ import Login from "./pages/Login/Login";
 import Customer from "./pages/Customer.js";
 import MainMenu from "./pages/MainMenu/MainMenu.js";
 import StoreReg from "./pages/StoreReg/StoreReg.js";
-import RestaurantInfo from "./Components/info/RestaurantInfo.js"
+import RestaurantInfo from "./Components/info/RestaurantInfo.js";
 import MapMarker from "./Components/map/MapMarker.js";
+import Order from "./pages/Order/Order";
 import NotFound from "./pages/404";
 import Restaurant from "./pages/Restaurant/Restaurant.js";
 /*------ Pages-----*/
@@ -25,20 +26,22 @@ class App extends Component {
     this.props.hideLoader();
   }
   render() {
+    const aa = "d";
     return (
       <Router>
         <Switch>
           <ScrollToTopRoute exact={true} path={"/"} component={homeHosting} />
           <ScrollToTopRoute exact={true} path={"/signUp"} component={SignUp} />
-          <ScrollToTopRoute exact={true} path={"/login"} component={Login} />
+          <ScrollToTopRoute data={"a"} exact={true} path={"/login"} component={Login} />
           <ScrollToTopRoute exact={true} path="/Main" exact component={MainMenu} />
-          <ScrollToTopRoute path="/Customer" exact component={Customer} />
-          {/* <ScrollToTopRoute path="/" exact component={RestaurantInfo} /> */}
-          <ScrollToTopRoute path="/StoreReg" exact component={StoreReg} />
-          {/* <ScrollToTopRoute component={NotFound} /> */}
+          <Route
+            path="/Customer"
+            render={(props) => <Customer text={{ data: "hi" }} {...props} />}
+          />
           <ScrollToTopRoute exact={true} path="/MapMarker" exact component={MapMarker} />
           <ScrollToTopRoute exact={true} path="/Restaurant" exact component={Restaurant} />
           <ScrollToTopRoute exact={true} path="/StoreReg" exact component={StoreReg} />
+          <ScrollToTopRoute path="/order" component={Order} />
           <ScrollToTopRoute component={NotFound} />
 
           {/* <ScrollToTopRoute path="/Digital-marketing" component={DigitalMarketing} />

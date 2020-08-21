@@ -32,16 +32,24 @@ class SignUp extends Component {
       positionX: "",
       positionY: "",
       showResults: false,
+      message: "",
     };
   }
-
-  openModal = () => {
-    this.setState({ showResults: true });
+  // TODO : state 값 입력받을 때 정해진 유형에 맞지 않으면 password처럼 떠야함
+  chageMessage = () => {
+    let str = this.state.name + "님의 아이디는 " + this.state.id + "입니다. \n ";
+    this.setState({ message: str });
+  };
+  routeChange = () => {
+    this.props.history.push("/login");
+  };
+  openModal = async (e) => {
+    let changeMessage = await this.chageMessage();
+    // TODO : 회원가입 성공 / 실패 구분해서 MODAL 띄워줘야 함
+    let changeModal = await this.setState({ showResults: true });
   };
 
   onSubmit = async (e) => {
-    // FIXME : submit 한번 보내면 비밀번호 일치하지 않다고 뜨는거 고쳐야 함
-
     e.preventDefault();
     /**검증 로직 만들기
      * 1. 비밀번호와 비밀번호 체크가 다를 경우를 검증한다
@@ -90,10 +98,15 @@ class SignUp extends Component {
           positionY: this.state.positionY,
         },
       });
+      console.log(b);
+      return b;
     };
 
-    // let b = setTimeout(axiosResult, 2000);
-    setTimeout(console.log(this.state), 2000);
+    setTimeout(axiosResult, 1800);
+    setTimeout(this.openModal, 3000);
+    // TODO : 1. 회원가입 성공/실패 값 return 해줘야 한다.
+    // TODO : 2. 성공 시랑 실패시 값이 걸리는 시간이 다른데 맞춰서 처리해줘야 함
+    return;
   };
 
   onChangeId = (e) => {
@@ -245,10 +258,17 @@ class SignUp extends Component {
           </Checkbox>
           {termError && <div style={{ color: "red" }}>약관에 동의하셔야 합니다.</div>}
         </div> */}
-          <button onClick={this.openModal} className="btn_three">
+          <button onClick={this.onSubmit} className="btn_three">
             회원 가입
           </button>
-          {this.state.showResults ? <JoinModal message /> : null}
+          {this.state.showResults ? (
+            <JoinModal
+              title="환영합니다! "
+              message={this.state.message}
+              submit={this.routeChange}
+              confirm="로그인창으로 이동"
+            />
+          ) : null}
         </form>
       </>
     );

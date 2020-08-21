@@ -3,6 +3,7 @@ import "./Login.css";
 import axios from "axios";
 import { WithRouter } from "react-router-dom";
 import App from "../../App";
+import hashFunc from "../../Components/password/passwordhash";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,9 @@ class Login extends Component {
     e.preventDefault();
     console.log("onSubmitlogin 실행!");
     let axiosRes;
+
+    let hashPassword = await hashFunc(this.state.password);
+    let hashPasswordState = await this.setState({ password: hashPassword });
     let axiosResult = async () => {
       let b = await axios({
         method: "post",
@@ -41,11 +45,10 @@ class Login extends Component {
     console.log(window.localStorage);
     window.sessionStorage.setItem("logged", "true");
     window.sessionStorage.setItem("accessToken", axiosRes.data.token);
-    // accessToken cookie에 저장해야 한다.
+    this.props.history.push("/");
   };
   onSubmitSignUp = async (e) => {
     e.preventDefault();
-    // TODO : modal 하나 띄워주면 좋을듯 회의해보자
     this.props.history.push("/signup");
   };
 

@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const random = require("random");
 const jwt = require("jsonwebtoken");
 const onError = require("./onError");
+const sha256 = require("sha256");
 // cors 허용
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -24,19 +25,29 @@ app.get("/api/host", (req, res) => {
   res.send({ host: "hwi" });
 });
 
-app.get("/api/test", (req, res) => {
-  db.query("select * from customer where email = '123@123.com'", (err, data) => {
-    if (!err) {
-      res.send(data);
-    } else {
-      console.log(err);
-      res.send(err);
+app.get("/api/login/userInfo", (req, res) => {
+  var email = req.query.email;
+  db.query(
+    "select food_ticket.balance, restaurant.name, restaurant.restaurant_address  from customer " +
+      "left join food_ticket on food_ticket.customer_id = customer.id " +
+      "left join restaurant on restaurant.id = food_ticket.restaurant_id " +
+      "where customer.email = '" +
+      email +
+      "'",
+    (err, data) => {
+      if (!err) {
+        res.send(data);
+      } else {
+        console.log(err);
+        res.send(err);
+      }
     }
-  });
+  );
 });
 
 app.post("/customer/join", (req, res) => {
   // TODO : 같은 아이디로 회원가입할 시 처리 로직 필요
+  // TODO : 로그인이 필요한 서비스 url 호출 시, 검증 로직 필요
 
   // json으로 받음
   // id, name, password, birth, address, positionX, positionY
@@ -61,29 +72,40 @@ app.post("/customer/join", (req, res) => {
         );
         res.status(200);
       } else {
-        // TODO : email 중복된 값 안되게 스키마 변경 // 물어보고 하자
         console.log(err);
         onError(err);
       }
     }
   );
 });
+function hashFunc(password) {
+  let salt = "foodticket";
+  return sha256(password + salt);
+}
 
 app.post("/customer/login", (req, res) => {
   let id = req.body.id;
   let password = req.body.password;
-  let secret = {};
+  let secret = "foodticket";
+  console.log(id, password);
   secret = app.get("jwt-secret");
+  // let hashPassword = password;
+  // hashFunc(password);
+  // console.log(hashFunc(password));
   db.query(
     `SELECT * FROM customer WHERE email =\"${id}\" AND password = \"${password}\"`,
     (err, data) => {
+      console.log(data[0].name);
+      if (data[0].name) {
+        res.send(err);
+        // FIXME : login 실패시 err 보내게만 해놓음
+      }
       if (!err) {
         // 1. jwt 만드는 부분
-        console.log(data);
         let token = jwt.sign(
           {
             id: id,
-            name: data.name,
+            name: data[0].name,
           },
           secret,
           {
@@ -105,27 +127,23 @@ app.post("/customer/login", (req, res) => {
   );
 });
 
-
 app.post("/customer/validate", (req, res) => {});
 
 app.get("/restaurant", (req, res) => {
- let name = req.body.name;
- let positionX = req.body.position_x;
- let positionY = req.body.position_y;
- let address = req.body.restaurant_address;
- db.query(
-   'SELECT * FROM restaurant',
-   (err, data) => {
-     if(!err){
-       res.send(data);
-       console.log('asdf');
-     }else {
-       console.log(err);
-       res.send(err);
-     }
-   }
- )
-})
+  let name = req.body.name;
+  let positionX = req.body.position_x;
+  let positionY = req.body.position_y;
+  let address = req.body.restaurant_address;
+  db.query("SELECT * FROM restaurant", (err, data) => {
+    if (!err) {
+      res.send(data);
+      console.log("asdf");
+    } else {
+      console.log(err);
+      res.send(err);
+    }
+  });
+});
 
 app.listen(PORT, () => {
   "";
