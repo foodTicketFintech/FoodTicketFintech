@@ -76,7 +76,7 @@ app.post("/customer/join", (req, res) => {
 app.post("/customer/login", (req, res) => {
   let id = req.body.id;
   let password = req.body.password;
-  let secret = {};
+  let secret = "foodticket";
   secret = app.get("jwt-secret");
   db.query(
     `SELECT * FROM customer WHERE email =\"${id}\" AND password = \"${password}\"`,
@@ -109,27 +109,23 @@ app.post("/customer/login", (req, res) => {
   );
 });
 
-
 app.post("/customer/validate", (req, res) => {});
 
 app.get("/restaurant", (req, res) => {
- let name = req.body.name;
- let positionX = req.body.position_x;
- let positionY = req.body.position_y;
- let address = req.body.restaurant_address;
- db.query(
-   'SELECT * FROM restaurant',
-   (err, data) => {
-     if(!err){
-       res.send(data);
-       console.log('asdf');
-     }else {
-       console.log(err);
-       res.send(err);
-     }
-   }
- )
-})
+  let name = req.body.name;
+  let positionX = req.body.position_x;
+  let positionY = req.body.position_y;
+  let address = req.body.restaurant_address;
+  db.query("SELECT * FROM restaurant", (err, data) => {
+    if (!err) {
+      res.send(data);
+      console.log("asdf");
+    } else {
+      console.log(err);
+      res.send(err);
+    }
+  });
+});
 
 app.listen(PORT, () => {
   "";
