@@ -26,7 +26,10 @@ app.get("/api/host", (req, res) => {
 
 app.get("/api/login/userInfo", (req, res) => {
   var email = req.query.email;
-  db.query("select * from customer where email = " + email, (err, data) => {
+  db.query("select food_ticket.balance, restaurant.name, restaurant.restaurant_address  from customer "
+    +"left join food_ticket on food_ticket.customer_id = customer.id "
+    +"left join restaurant on restaurant.id = food_ticket.restaurant_id "
+    +"where customer.email = '" + email + "'", (err, data) => {
     if (!err) {
       res.send(data);
     } else {
