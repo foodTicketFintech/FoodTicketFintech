@@ -25,17 +25,18 @@ class App extends Component {
     this.props.hideLoader();
   }
   render() {
+    const aa = "d";
     return (
       <Router>
         <Switch>
           <ScrollToTopRoute exact={true} path={"/"} component={homeHosting} />
           <ScrollToTopRoute exact={true} path={"/signUp"} component={SignUp} />
-          <ScrollToTopRoute exact={true} path={"/login"} component={Login} />
+          <ScrollToTopRoute data={"a"} exact={true} path={"/login"} component={Login} />
           <ScrollToTopRoute exact={true} path="/Main" exact component={MainMenu} />
-          <ScrollToTopRoute path="/Customer" exact component={Customer} />
-          {/* <ScrollToTopRoute path="/" exact component={RestaurantInfo} /> */}
-          <ScrollToTopRoute path="/StoreReg" exact component={StoreReg} />
-          {/* <ScrollToTopRoute component={NotFound} /> */}
+          <Route
+            path="/Customer"
+            render={(props) => <Customer text={{ data: "hi" }} {...props} />}
+          />
           <ScrollToTopRoute exact={true} path="/MapMarker" exact component={MapMarker} />
           <ScrollToTopRoute exact={true} path="/StoreReg" exact component={StoreReg} />
           <ScrollToTopRoute path="/order" component={Order} />

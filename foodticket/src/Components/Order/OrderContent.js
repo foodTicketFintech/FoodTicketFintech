@@ -10,6 +10,7 @@ class OrderContent extends Component {
       foodSelect: "",
       foodNum: "",
       foodName: [],
+      price: 0,
     };
   }
   componentDidMount() {}
