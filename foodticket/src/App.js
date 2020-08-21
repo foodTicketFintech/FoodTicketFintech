@@ -11,6 +11,7 @@ import StoreReg from "./pages/StoreReg/StoreReg.js";
 import RestaurantInfo from "./Components/info/RestaurantInfo.js"
 import MapMarker from "./Components/map/MapMarker.js";
 import NotFound from "./pages/404";
+import Restaurant from "./pages/Restaurant/Restaurant.js";
 /*------ Pages-----*/
 
 // TODO : axios호출 시 jwt 같이 보내야 함. // server는 token 검증하는 로직 필요
@@ -36,6 +37,7 @@ class App extends Component {
           <ScrollToTopRoute path="/StoreReg" exact component={StoreReg} />
           {/* <ScrollToTopRoute component={NotFound} /> */}
           <ScrollToTopRoute exact={true} path="/MapMarker" exact component={MapMarker} />
+          <ScrollToTopRoute exact={true} path="/Restaurant" exact component={Restaurant} />
           <ScrollToTopRoute exact={true} path="/StoreReg" exact component={StoreReg} />
           <ScrollToTopRoute component={NotFound} />
 
