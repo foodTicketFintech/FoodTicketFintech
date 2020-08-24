@@ -5,7 +5,6 @@ class Pay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
         }
     }
 
@@ -14,15 +13,17 @@ class Pay extends Component {
     }
 
     sendAxios = async() => {
+        var amount = window.localStorage.getItem("amount");
+        console.log(this.props);
         var data = await axios.post("https://kapi.kakao.com/v1/payment/ready",qs.stringify({
                 cid : 'TC0ONETIME',
                 partner_order_id : '1341',
                 partner_user_id : 'test123',
                 item_name : 'test',
                 quantity : 1,
-                total_amount : 10000,
+                total_amount : amount,
                 tax_free_amount : 5,
-                approval_url : "http://localhost:3000/pay",
+                approval_url : "http://localhost:3000/",
                 cancel_url : "http://localhost:3000/",
                 fail_url : "http://localhost:3000/",
             }),{
@@ -35,7 +36,7 @@ class Pay extends Component {
         );
         
         var rediectUrl = data.data.next_redirect_pc_url;
-        console.log(this.props.history, rediectUrl);
+        console.log(this.props, rediectUrl);
         window.location.href = rediectUrl;
         this.state = data.data;
     }
