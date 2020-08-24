@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Reveal from "react-reveal/Reveal/";
 
 class OrderContent extends Component {
   constructor(props) {
@@ -9,12 +10,92 @@ class OrderContent extends Component {
       restaurantName: [],
       foodSelect: "",
       foodNum: "",
+      restaurantNum: "",
       foodName: [],
       price: 0,
     };
   }
-  componentDidMount() {}
+  onDataLoad = async () => {
+    let axiosResult = async () => {
+      let userEmail = "tkdgur8377@gmail.com";
+      let b = await axios({
+        method: "post",
+        url: "http://localhost:4000/order",
+        data: {
+          id: userEmail,
+        },
+      });
+      // console.log(b.data);
+      return b.data;
+    };
+    let axiosRes = await axiosResult();
+    return axiosRes;
+  };
+
+  onClickRestaurant = async (e, name) => {
+    // this.setState({ foodSelect: });
+    e.preventDefault();
+    this.setState({ restaurantSelect: name });
+  };
+
+  componentDidMount() {
+    let axiosRes = this.onDataLoad().then((value) => {
+      console.log(value);
+      let i, j;
+      let temp1, temp2;
+
+      let foodname = new Array();
+      let restaurantname = new Array();
+      // window.sessionStorage.setItem("restaurantName", JSON.stringify({ name: "a" }));
+      for (i = 0; i < value.length; i++) {
+        let arrayValue = new Object();
+        temp1 = value[i].rname;
+        temp2 = value[i].fname;
+        arrayValue.rname = temp1;
+        arrayValue.fname = temp2;
+        console.log(arrayValue);
+        if (i != 0) {
+          if (value[i - 1].rname != value[i].rname) {
+            restaurantname.push(value[i].rname);
+          }
+        } else {
+          restaurantname.push(value[i].rname);
+        }
+        foodname.push(arrayValue);
+      }
+      this.setState({
+        foodName: foodname,
+        restaurantName: restaurantname,
+        foodNum: value.length,
+        restaurantNum: restaurantname.length,
+      });
+    });
+  }
   render() {
+    const restaurantList = this.state.restaurantName.map((name) => (
+      <Reveal key={name} effect="fadeInLeft" duration={1200}>
+        <button
+          onClick={(e) => this.onClickRestaurant(e, name)}
+          className="seo_btn seo_btn_one btn_hover"
+        >
+          {name}
+        </button>
+      </Reveal>
+    ));
+
+    // const foodList = this.state.foodName.map((name) => (
+    //   <Reveal key={name} effect="fadeInLeft" duration={1200}>
+    //     <button
+    //       onClick={(e) => this.onClickRestaurant(e, name)}
+    //       className="seo_btn seo_btn_one btn_hover"
+    //     >
+    //       {name}
+    //     </button>
+    //   </Reveal>
+    // ));
+
+    const foodList = () => <p>눌렀다.</p>;
+
     return (
       <section className="service_details_area sec_pad">
         <div className="container">
@@ -27,11 +108,11 @@ class OrderContent extends Component {
                 </div>
                 <div className="info_item">
                   <h6>음식점</h6>
-                  <p>Droit Theme</p>
+                  {restaurantList}
                 </div>
                 <div className="info_item">
                   <h6>음식종류</h6>
-                  <p>음식점을 선택하세요!</p>
+                  {/* {this.state.restaurantSelect == "" ? <p>음식점을 선택하세요!</p> : } */}
                 </div>
                 <div className="info_item">
                   <h6>가격</h6>
