@@ -43,7 +43,7 @@ class Restaurant extends Component {
 
     }
     onBuy()  {
-
+        window.location.href = "http://localhost:3000/pay";
     }
 
     componentWillMount() {
