@@ -51,26 +51,38 @@ class OrderContent extends Component {
   onClickRestaurant = async (e, name) => {
     // this.setState({ foodSelect: });
     e.preventDefault();
-    this.setState({ restaurantSelect: name });
-    let selectFoodList = this.foodBox(this.state.foodName, this.state.restaurantSelect);
-    this.setState({ selectFoodList: selectFoodList });
+    let a = await this.setState({ restaurantSelect: name });
+    let selectFoodList = await this.foodBox(this.state.foodName, this.state.restaurantSelect);
+  };
+
+  onClickFood = async (e, name) => {
+    e.preventDefault();
+    let i;
+    this.setState({ foodSelect: name });
+    for (i = 0; i < this.state.foodName.length; i++) {
+      if (name == this.state.foodName[i].fname) {
+        this.setState({ price: this.state.foodName[i].price });
+      }
+    }
   };
 
   componentDidMount() {
     let axiosRes = this.onDataLoad().then((value) => {
       console.log(value);
       let i, j;
-      let temp1, temp2;
+      let temp1, temp2, temp3;
 
       let foodname = new Array();
       let restaurantname = new Array();
       // window.sessionStorage.setItem("restaurantName", JSON.stringify({ name: "a" }));
+
       for (i = 0; i < value.length; i++) {
         let arrayValue = new Object();
-        temp1 = value[i].rname;
-        temp2 = value[i].fname;
-        arrayValue.rname = temp1;
-        arrayValue.fname = temp2;
+
+        arrayValue.rname = value[i].rname;
+        arrayValue.fname = value[i].fname;
+        arrayValue.price = value[i].price;
+
         console.log(arrayValue);
         if (i != 0) {
           if (value[i - 1].rname != value[i].rname) {
@@ -89,6 +101,7 @@ class OrderContent extends Component {
       });
     });
   }
+
   render() {
     const restaurantList = this.state.restaurantName.map((name) => (
       <Reveal key={name} effect="fadeInLeft" duration={1200}>
@@ -103,7 +116,12 @@ class OrderContent extends Component {
 
     const foodList = this.state.selectFoodName.map((name) => (
       <Reveal key={name} effect="fadeInLeft" duration={1200}>
-        <button className="seo_btn seo_btn_one btn_hover">{name}</button>
+        <button
+          onClick={(e) => this.onClickFood(e, name)}
+          className="seo_btn seo_btn_one btn_hover"
+        >
+          {name}
+        </button>
       </Reveal>
     ));
 
@@ -124,17 +142,10 @@ class OrderContent extends Component {
                 <div className="info_item">
                   <h6>음식종류</h6>
                   {foodList}
-
-                  {/* (
-                    <FoodBox
-                      foodName={this.state.foodName}
-                      restaurantSelect={this.state.restaurantSelect}
-                    />
-                  ) */}
                 </div>
                 <div className="info_item">
                   <h6>가격</h6>
-                  <p>$250.00</p>
+                  <p>{this.state.price}</p>
                 </div>
               </div>
             </div>
