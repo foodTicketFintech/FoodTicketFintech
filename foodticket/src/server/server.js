@@ -96,7 +96,7 @@ app.post("/customer/login", (req, res) => {
     `SELECT * FROM customer WHERE email =\"${id}\" AND password = \"${password}\"`,
     (err, data) => {
       console.log(data[0].name);
-      if (data[0].name) {
+      if (!data[0].name) {
         res.send(err);
         // FIXME : login 실패시 err 보내게만 해놓음
       }
