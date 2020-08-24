@@ -5,7 +5,6 @@ import CustomNavbar from '../Components/CustomNavbar';
 import FooterErp from '../Components/Footer/FooterErp';
 import FooterData from '../Components/Footer/FooterData';
 
-import Pay from "../Components/Pay/pay.js";
 class Customer extends React.Component {
   constructor(props){
     super(props)
@@ -31,7 +30,6 @@ class Customer extends React.Component {
             this.setState({name:"gg"});
           }.bind(this)}
         ></CustomerInfo>
-        <Pay/>
         <FooterErp FooterData={FooterData}/>
       </div>
     );
