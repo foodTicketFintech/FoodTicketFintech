@@ -21,6 +21,9 @@ import Pay from "./Components/Pay/pay.js";
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      payAmount : 0
+    }
     window.sessionStorage.setItem("logged", "false");
   }
 
@@ -40,7 +43,23 @@ class App extends Component {
             path="/Customer"
             render={(props) => <Customer text={{ data: "hi" }} {...props} />}
           />
-          <ScrollToTopRoute exact={true} path="/pay" exact component={Pay} />
+
+          <Route
+            path="/pay"
+            render={(props) => <Pay payAmount={ this.state.payAmount } {...props} />}
+          />
+
+          <Route
+            path="/Restaurant"
+            render={(props) => <Restaurant onChangeState={ 
+              function(amount) {
+                this.setState({payAmount : amount});
+                console.log(this.state);
+                //window.location.href = "http://localhost:3000/pay";
+              }.bind(this)
+             } {...props} />}
+          />
+          
           <ScrollToTopRoute exact={true} path="/MapMarker" exact component={MapMarker} />
           <ScrollToTopRoute exact={true} path="/Restaurant" exact component={Restaurant} />
           <ScrollToTopRoute exact={true} path="/StoreReg" exact component={StoreReg} />

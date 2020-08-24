@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ResInfo from "./ResInfo.js";
+import Pay from "../../Components/Pay/pay.js";
 
 
 
@@ -43,6 +44,8 @@ class Restaurant extends Component {
 
     }
     onBuy()  {
+        var amount = document.querySelector('.pay').value;
+        window.localStorage.setItem("amount", amount);
         window.location.href = "http://localhost:3000/pay";
     }
 
@@ -87,7 +90,7 @@ class Restaurant extends Component {
                                 </div>
                                 <div className="info_item">
                                     <h6>가격</h6>
-                                    <input type='number' placeholder='충전할 금액을 입력하세요.'/>
+                                    <input className="pay"type='number' placeholder='충전할 금액을 입력하세요.'/>
                                 </div>
                                 <div className="submit_button">
                                     <button onClick={this.onBuy} className="btn_three">식권구매</button>
