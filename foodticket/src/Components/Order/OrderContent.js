@@ -7,32 +7,6 @@ class OrderContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      data:[]
-    };
-  }
-  
-  getFood = async () => {
-    let len;
-    const rest = await axios({
-        method: 'GET',
-        url: 'http://localhost:4000/restaurant',
-        data: {}
-
-    });
-    this.setState({data:rest.data});
-    console.log(this.state.data[0].name);
-    
-
-}
-
-  componentWillMount(){
-    this.getFood();
-  }
-  componentDidMount() {}
-  render() {
-    const items = this.state.data;
-=======
       restaurantSelect: "",
       restaurantName: [],
       foodSelect: "",
@@ -122,7 +96,6 @@ class OrderContent extends Component {
     // ));
 
     const foodList = () => <p>눌렀다.</p>;
->>>>>>> 3c5b37f20d904b59972529ab88be16bd6d1752a9
 
     return (
       <section className="service_details_area sec_pad">
@@ -136,16 +109,7 @@ class OrderContent extends Component {
                 </div>
                 <div className="info_item">
                   <h6>음식점</h6>
-<<<<<<< HEAD
-                  <select>
-                    {items.map(names => {
-                      var a = <option value={names.name} >{names.name}</option>
-                      return a;
-                    })}
-                  </select>
-=======
                   {restaurantList}
->>>>>>> 3c5b37f20d904b59972529ab88be16bd6d1752a9
                 </div>
                 <div className="info_item">
                   <h6>음식종류</h6>

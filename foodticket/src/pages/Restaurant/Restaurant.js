@@ -54,52 +54,6 @@ class Restaurant extends Component {
     // const ticketPrice = '';
     const menus = this.state.data;
 
-<<<<<<< HEAD
-        return (
-            <section className="service_details_area sec_pad">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-5 pr_70">
-                            <div className="job_info">
-                                <div className="info_head">
-                                    <i className="ti-receipt"></i>
-                                    <h6 className="f_p f_600 f_size_18 t_color3">식권 구매하기</h6>
-                                </div>
-                                <div className="info_item">
-                                    <h3>음식점</h3>
-                                    <p>{res_name}</p>
-                                </div>
-                                <div className="info_item">
-                                    <h4>메뉴</h4><br />
-                                    <div>
-                                        {console.log("음식종류")}
-                                        {menus.map(menu => {
-                                            // console.log(food.menu_id)
-                                            // console.log(food)
-                                            var a = <ResInfo menu_id={menu.menu_id} res_id={menu.res_id} menu_name={menu.menu_name} price={menu.price} />
-
-                                            return a;
-                                        })}
-                                    </div>
-
-                                </div>
-                                <div className="info_item">
-                                    <h4>가격</h4>
-                                    <input type='number' placeholder='충전할 금액을 입력하세요.'/>
-                                </div>
-                                <div className="submit_button">
-                                    <button onClick={this.onBuy} className="btn_three">식권구매</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-7">
-                            <div className="details_content">
-                                <div className="sec_title">
-                                    <p className="f_400 f_size_15">
-                                        FoodTicket
-                                    </p>
-                                    <p className="f_400 f_size_15">
-=======
     return (
       <section className="service_details_area sec_pad">
         <div className="container">
@@ -130,7 +84,6 @@ class Restaurant extends Component {
                           price={menu.price}
                         />
                       );
->>>>>>> 3c5b37f20d904b59972529ab88be16bd6d1752a9
 
                       return a;
                     })}
