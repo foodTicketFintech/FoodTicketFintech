@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Reveal from "react-reveal/Reveal/";
-
+import JoinModal from "../Modal/JoinModal";
 class OrderContent extends Component {
   constructor(props) {
     super(props);
@@ -83,18 +83,16 @@ class OrderContent extends Component {
       </Reveal>
     ));
 
-    // const foodList = this.state.foodName.map((name) => (
-    //   <Reveal key={name} effect="fadeInLeft" duration={1200}>
-    //     <button
-    //       onClick={(e) => this.onClickRestaurant(e, name)}
-    //       className="seo_btn seo_btn_one btn_hover"
-    //     >
-    //       {name}
-    //     </button>
-    //   </Reveal>
-    // ));
-
-    const foodList = () => <p>눌렀다.</p>;
+    const foodList = this.state.foodName.map((name) => (
+      <Reveal key={name} effect="fadeInLeft" duration={1200}>
+        <button
+          onClick={(e) => this.onClickRestaurant(e, name)}
+          className="seo_btn seo_btn_one btn_hover"
+        >
+          {name}
+        </button>
+      </Reveal>
+    ));
 
     return (
       <section className="service_details_area sec_pad">
@@ -112,7 +110,7 @@ class OrderContent extends Component {
                 </div>
                 <div className="info_item">
                   <h6>음식종류</h6>
-                  {/* {this.state.restaurantSelect == "" ? <p>음식점을 선택하세요!</p> : } */}
+                  {/* {this.state.restaurantSelect == "" ? <p>음식점을 선택하세요!</p> : { foodList }} */}
                 </div>
                 <div className="info_item">
                   <h6>가격</h6>
