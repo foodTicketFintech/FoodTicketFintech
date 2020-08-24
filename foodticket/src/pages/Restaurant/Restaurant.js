@@ -87,7 +87,7 @@ class Restaurant extends Component {
                                 </div>
                                 <div className="info_item">
                                     <h6>가격</h6>
-                                    <p>100,000원</p>
+                                    <input type='number' placeholder='충전할 금액을 입력하세요.'/>
                                 </div>
                                 <div className="submit_button">
                                     <button onClick={this.onBuy} className="btn_three">식권구매</button>
