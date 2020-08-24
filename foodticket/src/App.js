@@ -25,6 +25,10 @@ class App extends Component {
       payAmount : 0
     }
     window.sessionStorage.setItem("logged", "false");
+    if (window.sessionStorage.getItem("accessToken")) {
+      // TODO : accessToken보고 로그인 만료시간 끝나지 않았으면 TRUE
+      window.sessionStorage.setItem("logged", "true");
+    }
   }
 
   componentDidMount() {
