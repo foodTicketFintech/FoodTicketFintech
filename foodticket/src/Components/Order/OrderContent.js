@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Reveal from "react-reveal/Reveal/";
-import JoinModal from "../Modal/JoinModal";
+
 class OrderContent extends Component {
   constructor(props) {
     super(props);
@@ -11,10 +11,26 @@ class OrderContent extends Component {
       foodSelect: "",
       foodNum: "",
       restaurantNum: "",
+      selectFoodName: [],
       foodName: [],
       price: 0,
     };
   }
+
+  foodBox = (foodName, restaurantSelect) => {
+    //<React.Fragment>
+    let i;
+    console.log(foodName, restaurantSelect);
+    let selectData = new Array();
+    for (i = 0; i < foodName.length; i++) {
+      if (foodName[i].rname === restaurantSelect) {
+        selectData.push(foodName[i].fname);
+      }
+    }
+    console.log(selectData);
+    this.setState({ selectFoodName: selectData });
+  };
+
   onDataLoad = async () => {
     let axiosResult = async () => {
       let userEmail = "tkdgur8377@gmail.com";
@@ -36,6 +52,8 @@ class OrderContent extends Component {
     // this.setState({ foodSelect: });
     e.preventDefault();
     this.setState({ restaurantSelect: name });
+    let selectFoodList = this.foodBox(this.state.foodName, this.state.restaurantSelect);
+    this.setState({ selectFoodList: selectFoodList });
   };
 
   componentDidMount() {
@@ -83,14 +101,9 @@ class OrderContent extends Component {
       </Reveal>
     ));
 
-    const foodList = this.state.foodName.map((name) => (
+    const foodList = this.state.selectFoodName.map((name) => (
       <Reveal key={name} effect="fadeInLeft" duration={1200}>
-        <button
-          onClick={(e) => this.onClickRestaurant(e, name)}
-          className="seo_btn seo_btn_one btn_hover"
-        >
-          {name}
-        </button>
+        <button className="seo_btn seo_btn_one btn_hover">{name}</button>
       </Reveal>
     ));
 
@@ -110,7 +123,14 @@ class OrderContent extends Component {
                 </div>
                 <div className="info_item">
                   <h6>음식종류</h6>
-                  {/* {this.state.restaurantSelect == "" ? <p>음식점을 선택하세요!</p> : { foodList }} */}
+                  {foodList}
+
+                  {/* (
+                    <FoodBox
+                      foodName={this.state.foodName}
+                      restaurantSelect={this.state.restaurantSelect}
+                    />
+                  ) */}
                 </div>
                 <div className="info_item">
                   <h6>가격</h6>
