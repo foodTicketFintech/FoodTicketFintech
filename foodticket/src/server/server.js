@@ -29,11 +29,11 @@ app.get("/api/login/userInfo", (req, res) => {
   var email = req.query.email;
   db.query(
     "select food_ticket.balance, restaurant.name, restaurant.restaurant_address  from customer " +
-      "left join food_ticket on food_ticket.customer_id = customer.id " +
-      "left join restaurant on restaurant.id = food_ticket.restaurant_id " +
-      "where customer.email = '" +
-      email +
-      "'",
+    "left join food_ticket on food_ticket.customer_id = customer.id " +
+    "left join restaurant on restaurant.id = food_ticket.restaurant_id " +
+    "where customer.email = '" +
+    email +
+    "'",
     (err, data) => {
       if (!err) {
         res.send(data);
@@ -127,7 +127,7 @@ app.post("/customer/login", (req, res) => {
   );
 });
 
-app.post("/customer/validate", (req, res) => {});
+app.post("/customer/validate", (req, res) => { });
 
 app.get("/restaurant", (req, res) => {
   let name = req.body.name;
@@ -144,6 +144,28 @@ app.get("/restaurant", (req, res) => {
     }
   });
 });
+
+app.get('/restaurant/food', (req, res) => {
+  let res_id = req.body.res_id;
+  let res_name = req.body.res_name;
+  let menu_id = req.body.menu_id;
+  let menu_name = req.body.menu_name;
+  let price = req.body.price;
+  let restaurant_address = req.body.restaurant_address;
+  let position_x = req.body.position_x;
+  let position_y = req.body.position_y;
+  db.query(
+    "select r.id as res_id, r.name as res_name, m.id as menu_id, m.name as menu_name, price, restaurant_address, position_x, position_y  from menu m, restaurant r where m.restaurant_id = r.id"
+    , (err, data) => {
+      if (!err) {
+        res.send(data);
+        console.log("Join Success!");
+      } else {
+        console.log(err);
+        res.send(err);
+      }
+    });
+})
 
 app.listen(PORT, () => {
   "";
