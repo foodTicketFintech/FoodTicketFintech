@@ -1,20 +1,36 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+
 class OrderContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurantSelect: "",
-      restaurantName: [],
-      foodSelect: "",
-      foodNum: "",
-      foodName: [],
-      price: 0,
+      data:[]
     };
+  }
+  
+  getFood = async () => {
+    let len;
+    const rest = await axios({
+        method: 'GET',
+        url: 'http://localhost:4000/restaurant',
+        data: {}
+
+    });
+    this.setState({data:rest.data});
+    console.log(this.state.data[0].name);
+    
+
+}
+
+  componentWillMount(){
+    this.getFood();
   }
   componentDidMount() {}
   render() {
+    const items = this.state.data;
+
     return (
       <section className="service_details_area sec_pad">
         <div className="container">
@@ -27,7 +43,12 @@ class OrderContent extends Component {
                 </div>
                 <div className="info_item">
                   <h6>음식점</h6>
-                  <p>Droit Theme</p>
+                  <select>
+                    {items.map(names => {
+                      var a = <option value={names.name} >{names.name}</option>
+                      return a;
+                    })}
+                  </select>
                 </div>
                 <div className="info_item">
                   <h6>음식종류</h6>

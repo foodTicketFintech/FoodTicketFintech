@@ -65,20 +65,20 @@ class Restaurant extends Component {
                             <div className="job_info">
                                 <div className="info_head">
                                     <i className="ti-receipt"></i>
-                                    <h6 className="f_p f_600 f_size_18 t_color3">선택사항</h6>
+                                    <h6 className="f_p f_600 f_size_18 t_color3">식권 구매하기</h6>
                                 </div>
                                 <div className="info_item">
-                                    <h6>음식점</h6>
+                                    <h3>음식점</h3>
                                     <p>{res_name}</p>
                                 </div>
                                 <div className="info_item">
-                                    <h6>음식종류</h6>
+                                    <h4>메뉴</h4><br />
                                     <div>
                                         {console.log("음식종류")}
                                         {menus.map(menu => {
                                             // console.log(food.menu_id)
                                             // console.log(food)
-                                            var a = <ResInfo menu_id={menu.menu_id} res_id={menu.res_id} menu_name={menu.menu_name} />
+                                            var a = <ResInfo menu_id={menu.menu_id} res_id={menu.res_id} menu_name={menu.menu_name} price={menu.price} />
 
                                             return a;
                                         })}
@@ -86,7 +86,7 @@ class Restaurant extends Component {
 
                                 </div>
                                 <div className="info_item">
-                                    <h6>가격</h6>
+                                    <h4>가격</h4>
                                     <input type='number' placeholder='충전할 금액을 입력하세요.'/>
                                 </div>
                                 <div className="submit_button">
