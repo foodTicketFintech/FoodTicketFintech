@@ -37,7 +37,7 @@ class Pay extends Component {
         
         var rediectUrl = data.data.next_redirect_pc_url;
         console.log(this.props, rediectUrl);
-        //window.location.href = rediectUrl;
+        window.location.href = rediectUrl;
         this.state = data.data;
     }
 
