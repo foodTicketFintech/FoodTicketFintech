@@ -37,10 +37,16 @@ class Restaurant extends Component {
     console.log(myData);
     this.setState({ data: myData });
   };
+
+  setHref() {
+    this.setState({href : "http://localhost:3000/pay?resId=" + this.state.myData[0].res_id});
+  }
+
   onBuy() {
     var amount = document.querySelector('.pay').value;
         window.localStorage.setItem("amount", amount);
-        window.location.href = "http://localhost:3000/pay";
+        debugger;
+        window.location.href = "http://localhost:3000/pay?resId=" + this.state.myData[0].res_id;
   }
 
   componentWillMount() {
@@ -94,7 +100,14 @@ class Restaurant extends Component {
                   <input className="pay" type="number" placeholder="충전할 금액을 입력하세요." />
                 </div>
                 <div className="submit_button">
-                  <button onClick={this.onBuy} className="btn_three">
+                  <button onClick={
+                    function () {
+                      var amount = document.querySelector('.pay').value;
+                      window.localStorage.setItem("amount", amount);
+                      window.location.href = "http://localhost:3000/pay?resId=" + this.state.data[0].res_id;
+                    }.bind(this)
+
+                  } className="btn_three">
                     식권구매
                   </button>
                 </div>
