@@ -5,25 +5,31 @@ class Pay extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            resId : "0"
         }
     }
 
     componentDidMount(){
-        this.sendAxios();
+        this.sendAxiosReady();
     }
 
-    sendAxios = async() => {
+    sendAxiosReady = async() => {
         var amount = window.localStorage.getItem("amount");
+        var _partner_order_id = 'o111'
+        var _partner_user_id = 'u222'
+        var resId = window.location.search.split('=')[1];
+
         console.log(this.props);
         var data = await axios.post("https://kapi.kakao.com/v1/payment/ready",qs.stringify({
                 cid : 'TC0ONETIME',
-                partner_order_id : '1341',
-                partner_user_id : 'test123',
+                partner_order_id : _partner_order_id,
+                partner_user_id : _partner_user_id,
                 item_name : 'test',
                 quantity : 1,
                 total_amount : amount,
                 tax_free_amount : 5,
-                approval_url : "http://localhost:3000/",
+                approval_url : "http://localhost:3000/approval?partner_order_id="+_partner_order_id+'&partner_user_id='+_partner_user_id
+                    + '&res_id=' + resId,
                 cancel_url : "http://localhost:3000/",
                 fail_url : "http://localhost:3000/",
             }),{
@@ -32,20 +38,17 @@ class Pay extends Component {
                     'Content-Type': 'application/x-www-form-urlencoded'
                   },
             }
-            
         );
         
         var rediectUrl = data.data.next_redirect_pc_url;
-        console.log(this.props, rediectUrl);
+        window.localStorage.setItem("tid", data.data.tid);
+        console.log(this.props, data);
         window.location.href = rediectUrl;
-        this.state = data.data;
     }
 
     render() {
-        const data = this.state;
         return (
         <div>
-            <a href={data.next_redirect_pc_url}></a>
             <div id="preloader">
             <div id="ctn-preloader" className="ctn-preloader">
                 <div className="animation-preloader">

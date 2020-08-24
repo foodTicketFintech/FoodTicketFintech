@@ -15,6 +15,7 @@ import NotFound from "./pages/404";
 import Restaurant from "./pages/Restaurant/Restaurant.js";
 
 import Pay from "./Components/Pay/pay.js";
+import Approval from "./Components/Pay/approval";
 /*------ Pages-----*/
 
 // TODO : axios호출 시 jwt 같이 보내야 함. // server는 token 검증하는 로직 필요
@@ -59,7 +60,6 @@ class App extends Component {
               function(amount) {
                 this.setState({payAmount : amount});
                 console.log(this.state);
-                //window.location.href = "http://localhost:3000/pay";
               }.bind(this)
              } {...props} />}
           />
@@ -68,6 +68,7 @@ class App extends Component {
           <ScrollToTopRoute exact={true} path="/Restaurant" exact component={Restaurant} />
           <ScrollToTopRoute exact={true} path="/StoreReg" exact component={StoreReg} />
           <ScrollToTopRoute path="/order" component={Order} />
+          <ScrollToTopRoute path="/approval" component={Approval} />
           <ScrollToTopRoute component={NotFound} />
           
           {/* <ScrollToTopRoute path="/Digital-marketing" component={DigitalMarketing} />
