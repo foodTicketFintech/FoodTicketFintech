@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Reveal from "react-reveal/Reveal/";
 import QRCode from "qrcode.react";
+const jwt = require("jsonwebtoken");
 
 class OrderContent extends Component {
   constructor(props) {
@@ -32,10 +33,22 @@ class OrderContent extends Component {
     console.log(selectData);
     this.setState({ selectFoodName: selectData });
   };
+  verifyToken = async (token, str) => {
+    var decoded;
+    try {
+      decoded = jwt.verify(token, str);
+      console.log(decoded.id);
+    } catch (err) {
+      alert("올바른 secret키가 아닙니다.");
+    }
+    let emailValue = decoded.id;
+    return emailValue;
+  };
 
   onDataLoad = async () => {
+    var accessToken = window.sessionStorage.getItem("accessToken");
     let axiosResult = async () => {
-      let userEmail = "tkdgur8377@gmail.com";
+      let userEmail = await this.verifyToken(accessToken, "foodticket");
       let b = await axios({
         method: "post",
         url: "http://localhost:4000/order",
@@ -164,7 +177,7 @@ class OrderContent extends Component {
             </div>
             {this.state.qrcode ? (
               <div className="col-lg-7">
-                <QRCode size={400} value={this.state.foodSelect} />
+                <QRCode size={350} value={this.state.foodSelect} />
               </div>
             ) : (
               <div></div>
