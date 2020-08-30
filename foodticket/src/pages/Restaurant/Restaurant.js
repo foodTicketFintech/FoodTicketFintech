@@ -20,21 +20,12 @@ class Restaurant extends Component {
     });
     const name = window.localStorage.getItem("MarkerName");
     const myData = [];
-    console.log(name);
-    // console.log(rest.data);
-    // this.setState({data:rest.data});
     len = rest.data.length;
-    // console.log(this.state);
-    // console.log(this.state[window.sessionStorage.getItem("MarkerPick")]);
-    // console.log(this.state);
-    // console.log(rest.data.length)
-    console.log(len);
     for (let i = 0; i < len; i++) {
       if (rest.data[i].res_id == window.localStorage.getItem("MarkerPick")) {
         myData.push(rest.data[i]);
       }
     }
-    console.log(myData);
     this.setState({ data: myData });
   };
   onBuy() {
@@ -45,7 +36,6 @@ class Restaurant extends Component {
 
   componentWillMount() {
     this.getFood();
-    console.log("willMount");
   }
   // componentDidMount(){}
   render() {
@@ -72,7 +62,6 @@ class Restaurant extends Component {
                   <h4>메뉴</h4>
                   <br />
                   <div>
-                    {console.log("음식종류")}
                     {menus.map((menu) => {
                       // console.log(food.menu_id)
                       // console.log(food)

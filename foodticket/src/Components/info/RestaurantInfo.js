@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-// const express = require("express");
-// const app = express();
-// const cors = require('cors');
-// // const corsOptions = {
-// //     origin: "http://localhost:3000",
-// //     credentials: true, // true로 하면 설정한 내용을 response 헤더 추가
-// //   };
-// app.use(cors());
-
 const resList = []
 
 
@@ -81,9 +72,5 @@ class RestaurantInfo {
 
 
     }
-
-
-
-
 
 export default RestaurantInfo;

@@ -17,7 +17,6 @@ class StoreReg extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     this.addCustomer().then((response) => {
-      console.log(response.data);
     });
   };
 
@@ -38,12 +37,10 @@ class StoreReg extends React.Component {
         food2price: this.state.food2price,
       },
     });
-    console.log("asdfasdf");
   };
 
   componentDidMount() {
     // login하고 이용해야하는 서비스는 componentDidMount에 이부분 추가하면 됩니다!
-    console.log(window.sessionStorage.getItem("logged"));
     if (window.sessionStorage.getItem("logged") === "false") {
       this.props.history.push("/signup");
     }
