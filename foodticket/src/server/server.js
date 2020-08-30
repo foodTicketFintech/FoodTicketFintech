@@ -105,6 +105,7 @@ app.post("/customer/login", (req, res) => {
           {
             id: id,
             name: data[0].name,
+            userId : data[0].id,
           },
           secret,
           {
@@ -183,6 +184,25 @@ app.post("/order", (req, res) => {
     }
   );
 });
+
+app.post("/customer/pay", (req, res) => {
+  let restaurant_id = req.body.res_id;
+  let customer_id = req.body.customer_id;
+  let start_date = "2020-8-24";
+  let end_date = "2020-8-24";
+  let balance = req.body.balance;
+  db.query(
+    `INSERT INTO food_ticket (restaurant_id, customer_id, start_date, end_date, balance) VALUES (${restaurant_id}, ${customer_id}, ${start_date}, ${end_date}, ${balance})`,
+    (err, data) => {
+      if(!err){
+        res.send(data)
+      } else {
+        console.log(err);
+        res.send(err);
+      }
+    }
+    )
+})
 
 app.listen(PORT, () => {
   "";
