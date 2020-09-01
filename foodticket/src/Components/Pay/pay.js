@@ -19,7 +19,6 @@ class Pay extends Component {
         var _partner_user_id = 'u222'
         var resId = window.location.search.split('=')[1];
 
-        console.log(this.props);
         var data = await axios.post("https://kapi.kakao.com/v1/payment/ready",qs.stringify({
                 cid : 'TC0ONETIME',
                 partner_order_id : _partner_order_id,
@@ -42,7 +41,6 @@ class Pay extends Component {
         
         var rediectUrl = data.data.next_redirect_pc_url;
         window.localStorage.setItem("tid", data.data.tid);
-        console.log(this.props, data);
         window.location.href = rediectUrl;
     }
 

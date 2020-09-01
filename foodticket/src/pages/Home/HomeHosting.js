@@ -15,15 +15,7 @@ class HomeHosting extends Component {
     window.localStorage.setItem("mapValue", false);
     var ob = new RestaurantInfo();
   }
-  componentDidMount() {
-    console.log(this.props);
-    console.log(window.localStorage.getItem("mapValue"));
-    // if(window.localStorage.getItem('mapValue') === "false"){
-    //     this.props.history.push("/RestaurantInfo");
-    // }
-  }
-  // 1. localstorage 값 확인
-  // 2.
+  componentDidMount() {}
   render() {
     return (
       <div className="body_wrapper">

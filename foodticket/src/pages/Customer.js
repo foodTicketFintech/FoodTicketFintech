@@ -19,7 +19,6 @@ class Customer extends React.Component {
   render() {
     const {text} = this.props;
 
-    console.log(text);
     return (
       <div className="customer">
  

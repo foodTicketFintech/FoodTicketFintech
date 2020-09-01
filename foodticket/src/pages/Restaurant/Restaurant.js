@@ -69,8 +69,6 @@ class Restaurant extends Component {
                   <br />
                   <div>
                     {menus.map((menu) => {
-                      // console.log(food.menu_id)
-                      // console.log(food)
                       var a = (
                         <ResInfo
                           menu_id={menu.menu_id}

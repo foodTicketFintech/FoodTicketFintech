@@ -24,7 +24,6 @@ class Login extends Component {
 
   onSubmitLogin = async (e) => {
     e.preventDefault();
-    console.log("onSubmitlogin 실행!");
     let axiosRes;
 
     let hashPassword = await hashFunc(this.state.password);
@@ -41,8 +40,6 @@ class Login extends Component {
       return b;
     };
     axiosRes = await axiosResult();
-    console.log(axiosRes.data.token);
-    console.log(window.localStorage);
     window.sessionStorage.setItem("logged", "true");
     window.sessionStorage.setItem("accessToken", axiosRes.data.token);
     this.props.history.push("/");

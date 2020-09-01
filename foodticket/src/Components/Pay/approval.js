@@ -25,7 +25,6 @@ class Approval extends Component {
         this.state.partner_user_id = window.location.search.split("&")[1].split('=')[1];
         this.state.res_id = window.location.search.split("&")[2].split('=')[1];
         this.state.pg_token = window.location.search.split("&")[3].split('=')[1];
-        console.log(this.state);
     }
     
     sendAxiosApproval = async() => {
@@ -46,7 +45,6 @@ class Approval extends Component {
         }
 
         );
-        console.log(data);
         alert("결제 완료");
         this.sendAxiosAmount(data);
     }

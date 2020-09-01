@@ -23,21 +23,18 @@ class OrderContent extends Component {
   foodBox = (foodName, restaurantSelect) => {
     //<React.Fragment>
     let i;
-    console.log(foodName, restaurantSelect);
     let selectData = new Array();
     for (i = 0; i < foodName.length; i++) {
       if (foodName[i].rname === restaurantSelect) {
         selectData.push(foodName[i].fname);
       }
     }
-    console.log(selectData);
     this.setState({ selectFoodName: selectData });
   };
   verifyToken = async (token, str) => {
     var decoded;
     try {
       decoded = jwt.verify(token, str);
-      console.log(decoded.id);
     } catch (err) {
       alert("올바른 secret키가 아닙니다.");
     }
@@ -56,7 +53,6 @@ class OrderContent extends Component {
           id: userEmail,
         },
       });
-      // console.log(b.data);
       return b.data;
     };
     let axiosRes = await axiosResult();
@@ -88,7 +84,6 @@ class OrderContent extends Component {
 
   componentDidMount() {
     let axiosRes = this.onDataLoad().then((value) => {
-      console.log(value);
       let i, j;
       let temp1, temp2, temp3;
 
@@ -103,7 +98,6 @@ class OrderContent extends Component {
         arrayValue.fname = value[i].fname;
         arrayValue.price = value[i].price;
 
-        console.log(arrayValue);
         if (i != 0) {
           if (value[i - 1].rname != value[i].rname) {
             restaurantname.push(value[i].rname);

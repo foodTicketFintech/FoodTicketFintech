@@ -2,8 +2,6 @@ import React from "react";
 import "./JoinModal.css";
 
 const Modal = (content) => {
-  //<React.Fragment>
-  console.log(content);
   return (
     <>
       <div className="ModalOverlay">

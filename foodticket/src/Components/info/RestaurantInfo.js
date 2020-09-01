@@ -25,10 +25,6 @@ class RestaurantInfo {
         }
     
         asdf(inputRest) {
-            console.log("inputRest");
-            console.log(inputRest.data.length);
-            
-            //console.log(this.test.data.length);
             window.localStorage.setItem("resSize", inputRest.data.length);
             for (let i = 0; i < inputRest.data.length; i++) {
                 window.localStorage.setItem(`mapId${i + 1}`, inputRest.data[i].id);
@@ -37,39 +33,9 @@ class RestaurantInfo {
                 window.localStorage.setItem(`mapPosition_y${i + 1}`, inputRest.data[i].position_y);
                 window.localStorage.setItem(`mapRestaurant_address${i + 1}`, inputRest.data[i].restaurant_address);
             }
-            console.log("------------------")
-            console.log(inputRest.data[0])
 
 
         }
-
-        // dbTest = async () => {
-        //     const data = await axios.get({
-        //         method: "GET",
-        //         url: "localhost:4000/restaurant",
-        //         data: {
-        //             id: this.state.id,
-        //             name: this.state.name,
-        //             positionX: this.state.positionX,
-        //             positionY: this.state.positionY,
-        //             address: this.state.address
-        //         }
-        //     })
-        //     console.log("bbbb");
-        // }
-
-        // dbTest = async()  =>{
-        //     const getRes = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        //     .then(Response =>{
-        //         console.log(Response)
-        //         this.setState({posts: Response.data})
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //         this.setState({errorMsg : 'Error retreiving data'})
-        //     })
-        // } 
-
 
     }
 

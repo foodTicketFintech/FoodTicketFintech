@@ -59,7 +59,6 @@ class App extends Component {
             render={(props) => <Restaurant onChangeState={ 
               function(amount) {
                 this.setState({payAmount : amount});
-                console.log(this.state);
               }.bind(this)
              } {...props} />}
           />

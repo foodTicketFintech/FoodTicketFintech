@@ -38,7 +38,6 @@ app.get("/api/login/userInfo", (req, res) => {
       if (!err) {
         res.send(data);
       } else {
-        console.log(err);
         res.send(err);
       }
     }
@@ -62,17 +61,12 @@ app.post("/customer/join", (req, res) => {
   // random한 ID값 생성
   let randomId = random.int(0, 1000000);
   let id = randomId;
-  console.log(randomId);
   db.query(
     `INSERT INTO customer VALUES(\"${id}\",\"${email}\",\"${password}\",\"${name}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") `,
     (err, data) => {
       if (!err) {
-        console.log(
-          `INSERT INTO customer VALUES(\"${id}\",\"${email}\",\"${password}\",\"${name}\",\"${birth}\",\"${address}\",\"${positionX}\",\"${positionY}\") 실행 ✅ `
-        );
         res.status(200);
       } else {
-        console.log(err);
         onError(err);
       }
     }
@@ -87,7 +81,6 @@ app.post("/customer/login", (req, res) => {
   let id = req.body.id;
   let password = req.body.password;
   let secret = "foodticket";
-  console.log(id, password);
   secret = app.get("jwt-secret");
   // let hashPassword = password;
   // hashFunc(password);
@@ -95,7 +88,6 @@ app.post("/customer/login", (req, res) => {
   db.query(
     `SELECT * FROM customer WHERE email =\"${id}\" AND password = \"${password}\"`,
     (err, data) => {
-      console.log(data[0].name);
       if (!data[0].name) {
         res.send(err);
       }
@@ -113,14 +105,12 @@ app.post("/customer/login", (req, res) => {
             subject: "userInfo",
           }
         );
-        console.log(token);
         res.json({
           message: "Login Success!! ✅",
           token,
         });
       } else {
         // TODO : 400 error 만들어서 줘야 함
-        console.log(err);
         res.send(err);
       }
     }
@@ -137,9 +127,7 @@ app.get("/restaurant", (req, res) => {
   db.query("SELECT * FROM restaurant", (err, data) => {
     if (!err) {
       res.send(data);
-      console.log("asdf");
     } else {
-      console.log(err);
       res.send(err);
     }
   });
@@ -159,9 +147,7 @@ app.get("/restaurant/food", (req, res) => {
     (err, data) => {
       if (!err) {
         res.send(data);
-        console.log("Join Success!");
       } else {
-        console.log(err);
         res.send(err);
       }
     }
@@ -176,9 +162,7 @@ app.post("/order", (req, res) => {
     (err, data) => {
       if (!err) {
         res.send(data);
-        console.log("Join Success!");
       } else {
-        console.log(err);
         res.send(err);
       }
     }
@@ -197,7 +181,6 @@ app.post("/customer/pay", (req, res) => {
       if(!err){
         res.send(data)
       } else {
-        console.log(err);
         res.send(err);
       }
     }

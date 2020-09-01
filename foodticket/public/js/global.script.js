@@ -140,8 +140,6 @@ $(document).on('click', '.sweet-check', function(){
 		$(this).addClass('checked');
 		$(this).find('input').prop('checked', true);
 	}
-
-	//console.log($(this).find('input').prop('checked'));
 });
 
 $(document).on('click','[data-loader]', function(){

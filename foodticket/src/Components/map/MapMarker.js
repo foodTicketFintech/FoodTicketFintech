@@ -53,10 +53,6 @@ export default function MapMarker() {
                 }
             );
         }
-        for (let i = 0; i < window.localStorage.getItem("resSize"); i++) {
-            console.log(positions2[i]);
-        }
-
         // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
         // var positions = [
         //     {
@@ -134,7 +130,7 @@ export default function MapMarker() {
 
             // 마커에 클릭이벤트를 등록합니다
             kakao.maps.event.addListener(marker, 'click', function () {
-                console.log(i);
+
                 window.localStorage.setItem("MarkerPick", i);
                 window.localStorage.setItem("MarkerName", window.localStorage.getItem(`mapName${i}`));
                 window.location.replace("http://localhost:3000/restaurant");
@@ -157,11 +153,6 @@ export default function MapMarker() {
                 infowindow.close();
             };
         }
-
-
-
-
-
     };
 
     return <div id="map" style={{ width: "1200px", height: "500px" }}></div>;

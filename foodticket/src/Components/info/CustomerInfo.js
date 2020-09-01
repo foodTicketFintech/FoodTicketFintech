@@ -15,13 +15,11 @@ class CustomerInfo extends React.Component {
         var decoded;
         try {
             decoded = jwt.verify(token, str);
-            console.log(decoded.id);
             
         } catch (err) {
             alert("올바른 secret키가 아닙니다.")
         }
         let emailValue = await this.setState({email : decoded.id});
-        console.log(emailValue);
         let dbValue = await this.dbTest();
     }
     
@@ -34,7 +32,6 @@ class CustomerInfo extends React.Component {
 
     dbTest = async () => {
         const data = await axios.get("http://localhost:4000/api/login/userInfo?email=" + this.state.email);
-        console.log(data);
         this.setState({data : data.data});
     }
     

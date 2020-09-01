@@ -61,14 +61,10 @@ class SignUp extends Component {
     // if (!term) {
     //   return setTermError(true);
     // }
-
-    console.log(this.state.id, this.state.name, this.state.password, this.state.passwordCheck);
     // Kakao Map API 사용 -> 좌표 저장
     let geocoder = new kakao.maps.services.Geocoder();
 
-    console.log(geocoder);
     let callback = (result, status) => {
-      console.log(result);
       if (status === kakao.maps.services.Status.OK) {
         this.setState({ positionX: result[0].x });
         this.setState({ positionY: result[0].y });
@@ -76,7 +72,6 @@ class SignUp extends Component {
         let hashPassword = hashFunc(this.state.password);
         this.setState({ password: hashPassword });
 
-        console.log(this.state);
         return;
       }
     };
@@ -98,7 +93,6 @@ class SignUp extends Component {
           positionY: this.state.positionY,
         },
       });
-      console.log(b);
       return b;
     };
 
